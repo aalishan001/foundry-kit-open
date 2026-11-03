@@ -1,0 +1,63 @@
+{
+ "note": "Weights sum to 100. Claude scores each criterion 0-1 from the JD and the user's confirmed facts, multiplies by the weight, and states the evidence for each.",
+ "criteria": [
+  {
+   "id": "family",
+   "weight": 20,
+   "what": "The role is in one of the target families (title and responsibilities, not just keywords)."
+  },
+  {
+   "id": "stack",
+   "weight": 25,
+   "what": "Share of the JD's must-have languages, frameworks and platforms backed by confirmed facts (synonyms count: Postgres = PostgreSQL)."
+  },
+  {
+   "id": "scope",
+   "weight": 15,
+   "what": "Scale and ownership in the facts match the role: systems owned, traffic or data volume, team size, on-call, design decisions."
+  },
+  {
+   "id": "level",
+   "weight": 15,
+   "what": "Step up = 1, lateral that clears the pay threshold = 0.8, lateral with pay unknown = 0.5, unclear = 0.4."
+  },
+  {
+   "id": "years",
+   "weight": 10,
+   "what": "Relevant years vs the JD's minimum: at or above = 1, up to 2 years short = 0.5, more = 0."
+  },
+  {
+   "id": "location",
+   "weight": 10,
+   "what": "Home country = 0.8 (+0.2 if in a preferred place), eligible abroad = 0.6, remote = 1."
+  },
+  {
+   "id": "extras",
+   "weight": 5,
+   "what": "Nice-to-haves backed by facts (domain such as payments or search, open source, certifications)."
+  }
+ ],
+ "bands": [
+  {
+   "min": 75,
+   "label": "strong",
+   "advice": "tailor and apply"
+  },
+  {
+   "min": 55,
+   "label": "good",
+   "advice": "apply; address the top gap in the notes"
+  },
+  {
+   "min": 40,
+   "label": "stretch",
+   "advice": "apply only with a referral or a clear story for the gaps"
+  },
+  {
+   "min": 0,
+   "label": "weak",
+   "advice": "skip unless there's a reason"
+  }
+ ],
+ "likeliness": "Odds of an interview, separate from match: start from match, subtract for hard requirements the user lacks (years, a named language or platform, a degree), for a level two or more steps up, and for roles abroad needing sponsorship; add for a referral, for a JD that mirrors their current work, or for a company in their segment. Never above match + 15."
+}

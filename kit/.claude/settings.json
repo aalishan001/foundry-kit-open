@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Read(/**)",
+      "Edit(/**)",
+      "Write(/**)",
+      "Bash(python engine/*)",
+      "Bash(py engine/*)",
+      "PowerShell(python engine/*)",
+      "PowerShell(py engine/*)"
+    ],
+    "deny": [
+      "WebFetch(domain:linkedin.com)",
+      "WebFetch(domain:*.linkedin.com)",
+      "WebFetch(domain:naukri.com)",
+      "WebFetch(domain:*.naukri.com)",
+      "Edit(/.claude/**)",
+      "Write(/.claude/**)",
+      "Edit(/engine/**)",
+      "Write(/engine/**)",
+      "Edit(/packs/**)",
+      "Write(/packs/**)",
+      "Edit(/templates/**)",
+      "Write(/templates/**)"
+    ]
+  }
+}

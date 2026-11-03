@@ -1,0 +1,29 @@
+---
+description: Record what they report. An application's status (OA, screen, interview round, offer, rejection, ghosted), a job they want to drop, or a new fact.
+argument-hint: "<what happened>"
+model: haiku
+effort: low
+---
+
+1. `python engine/doctor.py --quick`.
+
+2. Map what they said (`$ARGUMENTS`) to one engine call. If more than one record could match, list them and ask
+   which.
+   - **An application:** find it with `python engine/jobs.py apps --all`, then run
+     `python engine/jobs.py app <a-id> <status> [--round R] [--date D] [--next YYYY-MM-DD] [--note "<their words>"]`.
+     - Statuses: applied, oa, screen, interviewing (`--round` required), offer, accepted, declined, rejected,
+       withdrawn, ghosted.
+     - `--next` is the date of the next interview or call.
+     - The date is today unless they gave one.
+   - **A job they're dropping or that has closed:** `python engine/jobs.py status <j-id> dismissed|closed --note "<reason>"`.
+   - **A change to their search rules** (a threshold, notice period, a place to avoid, pay over place): show the
+     change, and on their yes `profile_cli.py set search @data/tmp/s.json`. Their abroad list:
+     `profile_cli.py abroad add <country> [--cities "A, B"] [--at N] | remove <country> | move <country> <N>`.
+   - **A new fact about their work:** add it with `facts.py add` (`"source": "user"`). Show them the wording and confirm
+     it in the same turn.
+   - **An earlier version of a fact or record:** use `python engine/backup.py log <path>`, then
+     `backup.py show <rev> <path>`. Show the old text, and restore it only on their yes, as a normal edit.
+
+3. Never set a status they didn't report.
+
+4. Confirm in one line. Run `python engine/backup.py commit "update: <summary>"`.

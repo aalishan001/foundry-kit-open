@@ -1,0 +1,18 @@
+{
+ "GET https://api.lever.co/v0/postings/betapay?mode=json": "lever_betapay.json",
+ "GET https://api.smartrecruiters.com/v1/companies/GammaData/postings/744000": "sr_gammadata_744000.json",
+ "GET https://api.smartrecruiters.com/v1/companies/GammaData/postings?limit=100&offset=0": "sr_gammadata.json",
+ "GET https://boards-api.greenhouse.io/v1/boards/acmecloud/jobs?content=true": "greenhouse_acmecloud.json",
+ "GET https://boards-api.greenhouse.io/v1/boards/iotahealth/jobs?content=true": {
+  "file": "",
+  "status": 404
+ },
+ "GET https://careers.epsilon-analytics.example.com/jobs": "static_epsilon.html",
+ "GET https://careers.eta-retail.example.com/": "static_eta.html",
+ "GET https://delta.wd3.myworkdayjobs.com/wday/cxs/delta/Careers/job/Hyderabad/Principal-Software-Engineer--Payments_R-1001": "workday_delta_r1001.json",
+ "GET https://kappacards.keka.com/careers/jobdetails/501": "static_kappa_501.html",
+ "GET https://www.kappacards.example.com/careers": "static_kappa.html",
+ "GET https://www.zetalabs.example.in/careers": "static_zeta.html",
+ "GET https://www.zetalabs.example.in/careers/jobs/123-full-stack-developer": "static_zeta_123.html",
+ "POST https://delta.wd3.myworkdayjobs.com/wday/cxs/delta/Careers/jobs {\"appliedFacets\":{},\"limit\":20,\"offset\":0,\"searchText\":\"India\"}": "workday_delta.json"
+}

@@ -1,0 +1,48 @@
+{
+ "note": "Generic place data for reading job locations. Regions are the usual zonal groupings; preferences are soft.",
+ "india": {
+  "states": {
+   "Andhra Pradesh": "south", "Arunachal Pradesh": "northeast", "Assam": "northeast", "Bihar": "east",
+   "Chhattisgarh": "central", "Goa": "west", "Gujarat": "west", "Haryana": "north", "Himachal Pradesh": "north",
+   "Jharkhand": "east", "Karnataka": "south", "Kerala": "south", "Madhya Pradesh": "central", "Maharashtra": "west",
+   "Manipur": "northeast", "Meghalaya": "northeast", "Mizoram": "northeast", "Nagaland": "northeast", "Odisha": "east",
+   "Punjab": "north", "Rajasthan": "north", "Sikkim": "northeast", "Tamil Nadu": "south", "Telangana": "south",
+   "Tripura": "northeast", "Uttar Pradesh": "north", "Uttarakhand": "north", "West Bengal": "east",
+   "Delhi": "north", "Chandigarh": "north", "Jammu and Kashmir": "north", "Ladakh": "north", "Puducherry": "south"
+  },
+  "cities": {
+   "New Delhi": "Delhi", "Delhi": "Delhi", "Delhi NCR": "Delhi", "NCR": "Delhi", "Gurugram": "Haryana", "Gurgaon": "Haryana",
+   "Faridabad": "Haryana", "Noida": "Uttar Pradesh", "Greater Noida": "Uttar Pradesh", "Ghaziabad": "Uttar Pradesh",
+   "Lucknow": "Uttar Pradesh", "Kanpur": "Uttar Pradesh", "Varanasi": "Uttar Pradesh", "Prayagraj": "Uttar Pradesh",
+   "Agra": "Uttar Pradesh", "Jaipur": "Rajasthan", "Jodhpur": "Rajasthan", "Bikaner": "Rajasthan", "Jaisalmer": "Rajasthan",
+   "Udaipur": "Rajasthan", "Chandigarh": "Chandigarh", "Mohali": "Punjab", "Ludhiana": "Punjab", "Amritsar": "Punjab",
+   "Dehradun": "Uttarakhand", "Shimla": "Himachal Pradesh",
+   "Mumbai": "Maharashtra", "Navi Mumbai": "Maharashtra", "Thane": "Maharashtra", "Pune": "Maharashtra", "Nagpur": "Maharashtra",
+   "Nashik": "Maharashtra", "Ahmedabad": "Gujarat", "Gandhinagar": "Gujarat", "Vadodara": "Gujarat", "Surat": "Gujarat",
+   "Rajkot": "Gujarat", "Bhuj": "Gujarat", "Panaji": "Goa",
+   "Bengaluru": "Karnataka", "Bangalore": "Karnataka", "Mysuru": "Karnataka", "Chennai": "Tamil Nadu", "Coimbatore": "Tamil Nadu",
+   "Tirunelveli": "Tamil Nadu", "Madurai": "Tamil Nadu", "Hyderabad": "Telangana", "Secunderabad": "Telangana",
+   "Visakhapatnam": "Andhra Pradesh", "Anantapur": "Andhra Pradesh", "Kurnool": "Andhra Pradesh", "Kochi": "Kerala",
+   "Thiruvananthapuram": "Kerala",
+   "Kolkata": "West Bengal", "Bhubaneswar": "Odisha", "Patna": "Bihar", "Ranchi": "Jharkhand", "Guwahati": "Assam",
+   "Bhopal": "Madhya Pradesh", "Indore": "Madhya Pradesh", "Raipur": "Chhattisgarh"
+  }
+ },
+ "countries": {
+  "IN": ["India", "Bharat"], "AE": ["United Arab Emirates", "UAE", "Dubai", "Abu Dhabi"], "SA": ["Saudi Arabia", "KSA", "Riyadh", "Jeddah"],
+  "QA": ["Qatar", "Doha"], "OM": ["Oman", "Muscat"], "KW": ["Kuwait"], "BH": ["Bahrain"],
+  "SG": ["Singapore"], "MY": ["Malaysia", "Kuala Lumpur"], "TH": ["Thailand", "Bangkok"], "VN": ["Vietnam", "Ho Chi Minh"],
+  "PH": ["Philippines", "Manila"], "ID": ["Indonesia", "Jakarta"], "AU": ["Australia", "Sydney", "Melbourne", "Brisbane", "Perth"],
+  "NZ": ["New Zealand"], "JP": ["Japan", "Tokyo"], "KR": ["South Korea", "Korea", "Seoul"], "CN": ["China", "Shanghai", "Beijing"],
+  "GB": ["United Kingdom", "UK", "England", "Scotland", "London", "Glasgow", "Edinburgh"], "IE": ["Ireland", "Dublin"],
+  "DE": ["Germany", "Hamburg", "Berlin", "Munich"], "DK": ["Denmark", "Aarhus", "Copenhagen"], "ES": ["Spain", "Madrid", "Bilbao"],
+  "PT": ["Portugal", "Lisbon", "Porto"], "FR": ["France", "Paris", "Lyon"], "IT": ["Italy", "Milan", "Rome"],
+  "NL": ["Netherlands", "Amsterdam", "Rotterdam"], "BE": ["Belgium", "Brussels"], "SE": ["Sweden", "Stockholm"],
+  "NO": ["Norway", "Oslo"], "FI": ["Finland", "Helsinki"], "PL": ["Poland", "Warsaw"], "GR": ["Greece", "Athens"],
+  "US": ["United States", "USA", "U.S.", "Texas", "California", "New York", "Houston", "Denver", "Boston", "Chicago"],
+  "CA": ["Canada", "Toronto", "Calgary", "Vancouver", "Montreal"], "BR": ["Brazil", "Sao Paulo"], "CL": ["Chile", "Santiago"],
+  "MX": ["Mexico"], "ZA": ["South Africa", "Johannesburg", "Cape Town"], "EG": ["Egypt", "Cairo"], "MA": ["Morocco"],
+  "KE": ["Kenya", "Nairobi"], "TR": ["Turkey", "Istanbul"], "LK": ["Sri Lanka", "Colombo"], "BD": ["Bangladesh", "Dhaka"],
+  "NP": ["Nepal", "Kathmandu"], "UZ": ["Uzbekistan", "Tashkent"], "KZ": ["Kazakhstan"]
+ }
+}

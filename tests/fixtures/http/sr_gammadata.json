@@ -1,0 +1,27 @@
+{
+ "totalFound": 2,
+ "content": [
+  {
+   "id": "744000",
+   "name": "Senior Backend Developer",
+   "location": {
+    "city": "Ahmedabad",
+    "region": "Gujarat",
+    "country": "in",
+    "remote": false
+   },
+   "releasedDate": "2026-10-18T10:00:00.000Z",
+   "ref": "https://api.smartrecruiters.com/v1/companies/GammaData/postings/744000"
+  },
+  {
+   "id": "744001",
+   "name": "Accountant",
+   "location": {
+    "city": "Ahmedabad",
+    "country": "in"
+   },
+   "releasedDate": "2026-10-18T10:00:00.000Z",
+   "ref": "https://api.smartrecruiters.com/v1/companies/GammaData/postings/744001"
+  }
+ ]
+}

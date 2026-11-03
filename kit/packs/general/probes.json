@@ -1,0 +1,11 @@
+{
+ "note": "Intake prompts for /start, one at a time, in the user's words.",
+ "common": [
+  "For each role: what you were responsible for, for whom, and at what scale (money, people, customers, volume).",
+  "The result you're proudest of in each role, with the before and after numbers if you have them.",
+  "Tools, systems and methods you use yourself, and how deep.",
+  "Team: did you lead or mentor anyone? How many?",
+  "Certifications, trainings, awards, publications or recognitions, with the year."
+ ],
+ "families": {}
+}

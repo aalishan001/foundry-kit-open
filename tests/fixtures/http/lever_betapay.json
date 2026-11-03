@@ -1,0 +1,32 @@
+[
+ {
+  "id": "b-1",
+  "text": "Engineering Manager - Full Stack",
+  "categories": {
+   "location": "Chennai"
+  },
+  "hostedUrl": "https://jobs.lever.co/betapay/b-1",
+  "createdAt": 1761200000000,
+  "descriptionPlain": "Lead a full-stack team building the merchant dashboard in React and Node.js, own release quality, and report delivery metrics to management. Lead a full-stack team building the merchant dashboard in React and Node.js, own release quality, and report delivery metrics to management. ",
+  "lists": [
+   {
+    "text": "Requirements",
+    "content": "<li>8+ years in energy analytics</li><li>Python, SQL</li>"
+   }
+  ],
+  "additionalPlain": "",
+  "workplaceType": "onsite"
+ },
+ {
+  "id": "b-2",
+  "text": "HR Business Partner",
+  "categories": {
+   "location": "Chennai"
+  },
+  "hostedUrl": "https://jobs.lever.co/betapay/b-2",
+  "createdAt": 1761200000000,
+  "descriptionPlain": "People partner.",
+  "lists": [],
+  "additionalPlain": ""
+ }
+]

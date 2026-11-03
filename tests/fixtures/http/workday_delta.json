@@ -1,0 +1,17 @@
+{
+ "total": 2,
+ "jobPostings": [
+  {
+   "title": "Principal Software Engineer, Payments",
+   "externalPath": "/job/Hyderabad/Principal-Software-Engineer--Payments_R-1001",
+   "locationsText": "Hyderabad, India",
+   "postedOn": "Posted 3 Days Ago"
+  },
+  {
+   "title": "Software Engineering Intern",
+   "externalPath": "/job/Pune/Graduate-Engineer-Trainee_R-1002",
+   "locationsText": "Pune, India",
+   "postedOn": "Posted Today"
+  }
+ ]
+}

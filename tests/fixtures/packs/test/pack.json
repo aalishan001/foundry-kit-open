@@ -1,0 +1,14 @@
+{"id": "test", "name": "Test pack", "version": "1", "description": "A small pack for unit tests.",
+ "abbreviations": {"sr": "senior", "asst": "assistant", "dy": "deputy", "mgr": "manager", "engr": "engineer",
+                   "agm": "assistant general manager", "dgm": "deputy general manager", "gm": "general manager"},
+ "levels": [
+  {"rank": 1, "titles": ["trainee", "graduate engineer trainee"], "years_hint": [0, 1]},
+  {"rank": 2, "titles": ["engineer", "analyst", "executive"], "years_hint": [1, 4]},
+  {"rank": 3, "titles": ["senior engineer", "senior analyst", "senior executive"], "years_hint": [3, 6]},
+  {"rank": 4, "titles": ["assistant manager"], "years_hint": [5, 8]},
+  {"rank": 5, "titles": ["deputy manager"], "years_hint": [7, 10]},
+  {"rank": 6, "titles": ["manager"], "years_hint": [8, 12]},
+  {"rank": 7, "titles": ["senior manager"], "years_hint": [10, 15]},
+  {"rank": 8, "titles": ["assistant general manager"], "years_hint": [12, 18]},
+  {"rank": 9, "titles": ["deputy general manager"], "years_hint": [15, 20]},
+  {"rank": 10, "titles": ["general manager"], "years_hint": [18, 30]}]}

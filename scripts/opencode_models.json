@@ -1,0 +1,16 @@
+{
+ "note": "OpenCode target: model tiers on OpenRouter, ZDR and no-training endpoints only (providers.openrouter.body.provider enforces it per request). Measured with scripts/measure_opencode.py; the per-command costs are in kit/docs/SETUP.md. scripts/gen_opencode.py renders the kit's .opencode/, AGENTS.md and opencode.json from these and the .claude sources.",
+ "tiers": {
+  "light": "openrouter/anthropic/claude-haiku-5.5",
+  "standard": "openrouter/anthropic/claude-haiku-5.5",
+  "strong": "openrouter/anthropic/claude-sonnet-5.5"
+ },
+ "commands": {
+  "help": "light", "sweep": "light", "today": "light", "update": "light",
+  "radar": "standard", "check": "standard", "applied": "standard", "start": "standard", "grill": "standard",
+  "tailor": "strong", "prep": "strong"
+ },
+ "agents": {"claim-checker": "standard"},
+ "default": "standard",
+ "background": "light"
+}

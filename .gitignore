@@ -1,0 +1,19 @@
+# one-time reference copy of the source project's code; never committed
+seed/
+
+# release zips (scripts/build_release.py)
+dist/
+
+# local-only settings (absolute-path deny rules, personal values)
+.claude/settings.local.json
+*.local.json
+*.local.txt
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# scratch
+out/
+tmp/

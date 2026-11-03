@@ -1,0 +1,44 @@
+{
+ "jobs": [
+  {
+   "id": 101,
+   "title": "Senior Software Engineer \u2013 Backend",
+   "location": {
+    "name": "Gurugram, Haryana, India"
+   },
+   "absolute_url": "https://boards.greenhouse.io/acmecloud/jobs/101",
+   "updated_at": "2026-10-20T09:00:00-04:00",
+   "content": "&lt;p&gt;We are looking for a Senior Software Engineer \u2013 Backend to join our platform engineering team.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Own the payments API: latency, availability and error budgets for 2,000 requests per second.&lt;/li&gt;&lt;li&gt;Design services in Java and Go on Kubernetes, with Kafka for events and PostgreSQL for the ledger.&lt;/li&gt;&lt;li&gt;Lead incident response and postmortems; build Grafana dashboards and automate release checks (CI/CD).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Requirements: 6+ years building backend services in Java or Go. &lt;/p&gt;"
+  },
+  {
+   "id": 102,
+   "title": "Software Engineer 2 - Backend",
+   "location": {
+    "name": "Jaisalmer, Rajasthan"
+   },
+   "absolute_url": "https://boards.greenhouse.io/acmecloud/jobs/102",
+   "updated_at": "2026-10-21T09:00:00-04:00",
+   "content": "&lt;p&gt;Site role&lt;/p&gt;"
+  },
+  {
+   "id": 103,
+   "title": "Engineering Manager, Backend",
+   "location": {
+    "name": "Madrid, Spain"
+   },
+   "absolute_url": "https://boards.greenhouse.io/acmecloud/jobs/103",
+   "updated_at": "2026-10-22T09:00:00-04:00",
+   "content": "&lt;p&gt;Spain&lt;/p&gt;"
+  },
+  {
+   "id": 104,
+   "title": "Staff Software Engineer, APIs",
+   "location": {
+    "name": "Pune, Maharashtra"
+   },
+   "absolute_url": "https://boards.greenhouse.io/acmecloud/jobs/104",
+   "updated_at": "2026-10-23T09:00:00-04:00",
+   "content": "&lt;p&gt;We are looking for a Staff Software Engineer to join our platform engineering team.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Own the payments API: latency, availability and error budgets for 2,000 requests per second.&lt;/li&gt;&lt;li&gt;Design services in Java and Go on Kubernetes, with Kafka for events and PostgreSQL for the ledger.&lt;/li&gt;&lt;li&gt;Lead incident response and postmortems; build Grafana dashboards and automate release checks (CI/CD).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Requirements: 6+ years building backend services in Java or Go. &lt;/p&gt;"
+  }
+ ]
+}

@@ -1,0 +1,2041 @@
+{
+ "pack": "software-eng",
+ "updated": "2026-11-03",
+ "note": "Researched and live-checked 2026-11-03: each portal fetched once, each owner sourced. Counts change daily; tier and portal type are what matter.",
+ "companies": [
+  {
+   "company": "Google",
+   "segment": "big-tech",
+   "india_office": true,
+   "careers_url": "https://www.google.com/about/careers/applications/jobs/results/?location=India",
+   "portal": {
+    "type": "other",
+    "tier": 3,
+    "how": "Google Careers custom portal; listings render client-side with filters, no public API."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "tier3",
+    "detail": "Careers page loads (HTTP 200); listings not machine-readable"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Subsidiary of Alphabet Inc., listed on Nasdaq (GOOGL, GOOG).",
+    "source": "https://en.wikipedia.org/wiki/Google",
+    "employees": 187000,
+    "employees_source": "https://en.wikipedia.org/wiki/Google",
+    "founded": 1998,
+    "founded_source": "https://en.wikipedia.org/wiki/Google",
+    "checked": "2026-11-03"
+   },
+   "alert": {
+    "url": null,
+    "note": "Job alerts exist but need a Google account sign-in; check the India-filtered results page instead."
+   }
+  },
+  {
+   "company": "Microsoft",
+   "segment": "big-tech",
+   "india_office": true,
+   "careers_url": "https://apply.careers.microsoft.com/careers?location=India",
+   "portal": {
+    "type": "other",
+    "tier": 3,
+    "how": "Eightfold-based Microsoft careers portal; JS app, no public job API."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "tier3",
+    "detail": "Careers page loads (HTTP 200); listings not machine-readable"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (MSFT).",
+    "source": "https://en.wikipedia.org/wiki/Microsoft",
+    "employees": 223000,
+    "employees_source": "https://en.wikipedia.org/wiki/Microsoft",
+    "founded": 1975,
+    "founded_source": "https://en.wikipedia.org/wiki/Microsoft",
+    "checked": "2026-11-03"
+   },
+   "alert": {
+    "url": "https://apply.careers.microsoft.com/careers/join?domain=microsoft.com",
+    "note": "Join Talent Network page on the careers portal, to hear about new roles."
+   }
+  },
+  {
+   "company": "Amazon",
+   "segment": "big-tech",
+   "india_office": true,
+   "careers_url": "https://www.amazon.jobs/en/search?country=IND",
+   "portal": {
+    "type": "other",
+    "tier": 3,
+    "how": "amazon.jobs custom portal; search results load client-side."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "tier3",
+    "detail": "Careers page loads (HTTP 200); listings not machine-readable"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (AMZN).",
+    "source": "https://en.wikipedia.org/wiki/Amazon_(company)",
+    "employees": 1576000,
+    "employees_source": "https://en.wikipedia.org/wiki/Amazon_(company)",
+    "founded": 1994,
+    "founded_source": "https://en.wikipedia.org/wiki/Amazon_(company)",
+    "checked": "2026-11-03"
+   },
+   "alert": {
+    "url": null,
+    "note": "Job alerts on amazon.jobs need a candidate account; no public sign-up URL found."
+   }
+  },
+  {
+   "company": "Uber",
+   "segment": "big-tech",
+   "india_office": true,
+   "careers_url": "https://www.uber.com/in/en/careers/list/?location=IND",
+   "portal": {
+    "type": "other",
+    "tier": 3,
+    "how": "Uber careers custom portal; job list is loaded by script."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "tier3",
+    "detail": "Careers page loads (HTTP 200); listings not machine-readable"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (UBER).",
+    "source": "https://en.wikipedia.org/wiki/Uber",
+    "employees": 34000,
+    "employees_source": "https://en.wikipedia.org/wiki/Uber",
+    "founded": 2009,
+    "founded_source": "https://en.wikipedia.org/wiki/Uber",
+    "checked": "2026-11-03"
+   },
+   "alert": {
+    "url": null,
+    "note": "No public job-alert sign-up found on the careers site."
+   }
+  },
+  {
+   "company": "Atlassian",
+   "segment": "big-tech",
+   "india_office": true,
+   "careers_url": "https://www.atlassian.com/company/careers/all-jobs",
+   "portal": {
+    "type": "static",
+    "tier": 1,
+    "jobs_url": "https://www.atlassian.com/company/careers/all-jobs",
+    "how": "All-jobs page is server-rendered as a table: title linking to /company/careers/details/<id>, then location; keep rows whose location says India."
+   },
+   "families": [
+    "backend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Server-rendered table: 349 jobs, 34 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (TEAM).",
+    "source": "https://en.wikipedia.org/wiki/Atlassian",
+    "employees": 13813,
+    "employees_source": "https://en.wikipedia.org/wiki/Atlassian",
+    "founded": 2002,
+    "founded_source": "https://en.wikipedia.org/wiki/Atlassian",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Salesforce",
+   "segment": "big-tech",
+   "india_office": true,
+   "careers_url": "https://salesforce.wd12.myworkdayjobs.com/External_Career_Site",
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "salesforce.wd12.myworkdayjobs.com",
+    "tenant": "salesforce",
+    "site": "External_Career_Site",
+    "search": "India",
+    "how": "Workday CXS JSON: POST /wday/cxs/salesforce/External_Career_Site/jobs with searchText India (Hyderabad, Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "platform-sre",
+    "ml-eng",
+    "security"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Workday CXS POST: 214 postings match searchText India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (CRM).",
+    "source": "https://en.wikipedia.org/wiki/Salesforce",
+    "employees": 83334,
+    "employees_source": "https://en.wikipedia.org/wiki/Salesforce",
+    "founded": 1999,
+    "founded_source": "https://en.wikipedia.org/wiki/Salesforce",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Adobe",
+   "segment": "big-tech",
+   "india_office": true,
+   "careers_url": "https://adobe.wd5.myworkdayjobs.com/external_experienced",
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "adobe.wd5.myworkdayjobs.com",
+    "tenant": "adobe",
+    "site": "external_experienced",
+    "search": "India",
+    "how": "Workday CXS JSON: POST /wday/cxs/adobe/external_experienced/jobs with searchText India (Noida, Bengaluru)."
+   },
+   "families": [
+    "data-eng",
+    "ml-eng",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Workday CXS POST: 45 postings match searchText India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (ADBE).",
+    "source": "https://en.wikipedia.org/wiki/Adobe_Inc.",
+    "employees": 31360,
+    "employees_source": "https://en.wikipedia.org/wiki/Adobe_Inc.",
+    "founded": 1982,
+    "founded_source": "https://en.wikipedia.org/wiki/Adobe_Inc.",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "NVIDIA",
+   "segment": "big-tech",
+   "india_office": true,
+   "careers_url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite",
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "nvidia.wd5.myworkdayjobs.com",
+    "tenant": "nvidia",
+    "site": "NVIDIAExternalCareerSite",
+    "search": "India",
+    "how": "Workday CXS JSON: POST /wday/cxs/nvidia/NVIDIAExternalCareerSite/jobs with searchText India (Bengaluru, Pune, Hyderabad)."
+   },
+   "families": [
+    "backend",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Workday CXS POST: 276 postings match searchText India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (NVDA).",
+    "source": "https://en.wikipedia.org/wiki/Nvidia",
+    "employees": 42000,
+    "employees_source": "https://en.wikipedia.org/wiki/Nvidia",
+    "founded": 1993,
+    "founded_source": "https://en.wikipedia.org/wiki/Nvidia",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Airbnb",
+   "segment": "product",
+   "india_office": true,
+   "careers_url": "https://careers.airbnb.com/positions/",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "airbnb",
+    "how": "Greenhouse job board API; filter location names for India (Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "platform-sre"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 211 jobs, 10 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (ABNB).",
+    "source": "https://en.wikipedia.org/wiki/Airbnb",
+    "employees": 8200,
+    "employees_source": "https://en.wikipedia.org/wiki/Airbnb",
+    "founded": 2008,
+    "founded_source": "https://en.wikipedia.org/wiki/Airbnb",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Flipkart",
+   "segment": "product",
+   "india_office": false,
+   "careers_url": "https://www.flipkartcareers.com/",
+   "portal": {
+    "type": "other",
+    "tier": 3,
+    "how": "Flipkart careers single-page app (#!/joblist); listings load by script."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "tier3",
+    "detail": "Careers page loads (HTTP 200); listings not machine-readable"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "About 85% owned by Walmart, which is listed on Nasdaq (WMT).",
+    "source": "https://en.wikipedia.org/wiki/Flipkart",
+    "employees": 22000,
+    "employees_source": "https://en.wikipedia.org/wiki/Flipkart",
+    "founded": 2007,
+    "founded_source": "https://en.wikipedia.org/wiki/Flipkart",
+    "checked": "2026-11-03"
+   },
+   "alert": {
+    "url": null,
+    "note": "No public job-alert sign-up found; check the job list page."
+   }
+  },
+  {
+   "company": "Zoho",
+   "segment": "product",
+   "india_office": false,
+   "careers_url": "https://careers.zohocorp.com/",
+   "portal": {
+    "type": "other",
+    "tier": 3,
+    "how": "Zoho Recruit career site; job list is rendered client-side."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "tier3",
+    "detail": "Careers page loads (HTTP 200); listings not machine-readable"
+   },
+   "stability": {
+    "type": "large group",
+    "basis": "Privately held by its founders and never listed; parent of the Zoho and ManageEngine businesses.",
+    "source": "https://www.zoho.com/aboutus.html",
+    "employees": null,
+    "employees_source": null,
+    "founded": 1996,
+    "founded_source": "https://www.zoho.com/aboutus.html",
+    "checked": "2026-11-03"
+   },
+   "alert": {
+    "url": "https://careers.zohocorp.com/",
+    "note": "The Zoho Recruit career site has a create-job-alert option for new openings."
+   }
+  },
+  {
+   "company": "Eternal (Zomato, Blinkit)",
+   "segment": "product",
+   "india_office": false,
+   "careers_url": "https://www.eternal.com/careers/",
+   "portal": {
+    "type": "other",
+    "tier": 3,
+    "how": "Eternal group careers page; openings load by script per brand."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "tier3",
+    "detail": "Careers page loads (HTTP 200); listings not machine-readable"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NSE (ETERNAL) and BSE.",
+    "source": "https://en.wikipedia.org/wiki/Eternal_Limited",
+    "employees": 4440,
+    "employees_source": "https://en.wikipedia.org/wiki/Eternal_Limited",
+    "founded": 2008,
+    "founded_source": "https://en.wikipedia.org/wiki/Eternal_Limited",
+    "checked": "2026-11-03"
+   },
+   "alert": {
+    "url": null,
+    "note": "No public job-alert sign-up found on the careers page."
+   }
+  },
+  {
+   "company": "Target",
+   "segment": "product",
+   "india_office": true,
+   "careers_url": "https://target.wd5.myworkdayjobs.com/targetcareers",
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "target.wd5.myworkdayjobs.com",
+    "tenant": "target",
+    "site": "targetcareers",
+    "search": "India",
+    "how": "Workday CXS JSON: POST /wday/cxs/target/targetcareers/jobs with searchText India (Target in India, Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "platform-sre",
+    "ml-eng"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Workday CXS POST: 306 postings match searchText India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (TGT).",
+    "source": "https://en.wikipedia.org/wiki/Target_Corporation",
+    "employees": 415000,
+    "employees_source": "https://en.wikipedia.org/wiki/Target_Corporation",
+    "founded": 1902,
+    "founded_source": "https://en.wikipedia.org/wiki/Target_Corporation",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Agoda",
+   "segment": "product",
+   "india_office": true,
+   "careers_url": "https://careersatagoda.com/",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "agoda",
+    "how": "Greenhouse job board API; filter location names for India (Gurugram)."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 308 jobs, 8 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Subsidiary of Booking Holdings, listed on Nasdaq (BKNG).",
+    "source": "https://en.wikipedia.org/wiki/Agoda",
+    "employees": null,
+    "employees_source": null,
+    "founded": 2005,
+    "founded_source": "https://en.wikipedia.org/wiki/Agoda",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Meesho",
+   "segment": "product",
+   "india_office": false,
+   "careers_url": "https://www.meesho.io/jobs",
+   "portal": {
+    "type": "lever",
+    "tier": 1,
+    "token": "meesho",
+    "how": "Lever postings API (mode=json); all postings are in India (Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "ml-eng",
+    "security",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Lever API: 51 postings, 51 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NSE (MEESHO) and BSE after its 2025 IPO.",
+    "source": "https://en.wikipedia.org/wiki/Meesho",
+    "employees": null,
+    "employees_source": null,
+    "founded": 2015,
+    "founded_source": "https://en.wikipedia.org/wiki/Meesho",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Swiggy",
+   "segment": "product",
+   "india_office": false,
+   "careers_url": "https://careers.swiggy.com/",
+   "portal": {
+    "type": "smartrecruiters",
+    "tier": 1,
+    "token": "Swiggy",
+    "how": "SmartRecruiters public postings API; country=in filter; nearly all postings are in India."
+   },
+   "families": [
+    "backend",
+    "ml-eng"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "SmartRecruiters API: 181 postings, 180 with country=in"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NSE (SWIGGY) and BSE since 2024.",
+    "source": "https://en.wikipedia.org/wiki/Swiggy",
+    "employees": 6000,
+    "employees_source": "https://en.wikipedia.org/wiki/Swiggy",
+    "founded": 2013,
+    "founded_source": "https://en.wikipedia.org/wiki/Swiggy",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "InMobi",
+   "segment": "product",
+   "india_office": false,
+   "careers_url": "https://www.inmobi.com/company/careers",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "inmobi",
+    "how": "Greenhouse job board API; filter location names for India (Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "platform-sre",
+    "ml-eng"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 81 jobs, 48 in India"
+   },
+   "stability": {
+    "type": null,
+    "basis": "Privately held and unlisted; founded 2007, past the startup age cut-off.",
+    "source": "https://en.wikipedia.org/wiki/InMobi",
+    "employees": 2500,
+    "employees_source": "https://en.wikipedia.org/wiki/InMobi",
+    "founded": 2007,
+    "founded_source": "https://en.wikipedia.org/wiki/InMobi",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Sarvam AI",
+   "segment": "product",
+   "india_office": false,
+   "careers_url": "https://www.sarvam.ai/careers",
+   "portal": {
+    "type": "ashby",
+    "tier": 1,
+    "token": "sarvam",
+    "how": "Ashby posting API; all jobs are in India (Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "frontend",
+    "platform-sre",
+    "ml-eng",
+    "security"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Ashby API: 46 jobs, 46 in India"
+   },
+   "stability": {
+    "type": "startup",
+    "basis": "Privately held, venture-funded AI company founded in 2023.",
+    "source": "https://en.wikipedia.org/wiki/Sarvam_AI",
+    "employees": null,
+    "employees_source": null,
+    "founded": 2023,
+    "founded_source": "https://en.wikipedia.org/wiki/Sarvam_AI",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "athenahealth",
+   "segment": "product",
+   "india_office": true,
+   "careers_url": "https://athenahealth.wd1.myworkdayjobs.com/External",
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "athenahealth.wd1.myworkdayjobs.com",
+    "tenant": "athenahealth",
+    "site": "External",
+    "search": "India",
+    "how": "Workday CXS JSON: POST /wday/cxs/athenahealth/External/jobs with searchText India (Chennai, Bengaluru, Pune)."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "data-eng",
+    "ml-eng",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Workday CXS POST: 39 postings match searchText India"
+   },
+   "stability": {
+    "type": "PE-backed",
+    "basis": "Private; owned by Bain Capital and Hellman & Friedman.",
+    "source": "https://en.wikipedia.org/wiki/Athenahealth",
+    "employees": null,
+    "employees_source": null,
+    "founded": 1997,
+    "founded_source": "https://en.wikipedia.org/wiki/Athenahealth",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Workday",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://workday.wd5.myworkdayjobs.com/Workday",
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "workday.wd5.myworkdayjobs.com",
+    "tenant": "workday",
+    "site": "Workday",
+    "search": "India",
+    "how": "Workday CXS JSON: POST /wday/cxs/workday/Workday/jobs with searchText India (Pune, Chennai)."
+   },
+   "families": [
+    "backend",
+    "platform-sre",
+    "ml-eng"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Workday CXS POST: 26 postings match searchText India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (WDAY).",
+    "source": "https://en.wikipedia.org/wiki/Workday,_Inc.",
+    "employees": 20400,
+    "employees_source": "https://en.wikipedia.org/wiki/Workday,_Inc.",
+    "founded": 2005,
+    "founded_source": "https://en.wikipedia.org/wiki/Workday,_Inc.",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Databricks",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://www.databricks.com/company/careers/open-positions",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "databricks",
+    "how": "Greenhouse job board API; filter location names for India (Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 910 jobs, 88 in India"
+   },
+   "stability": {
+    "type": null,
+    "basis": "Privately held and venture-funded; founded 2013, just past the startup age cut-off.",
+    "source": "https://en.wikipedia.org/wiki/Databricks",
+    "employees": 10000,
+    "employees_source": "https://en.wikipedia.org/wiki/Databricks",
+    "founded": 2013,
+    "founded_source": "https://en.wikipedia.org/wiki/Databricks",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "MongoDB",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://www.mongodb.com/company/careers",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "mongodb",
+    "how": "Greenhouse job board API; filter location names for India (Gurugram, Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "platform-sre",
+    "ml-eng",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 358 jobs, 80 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (MDB).",
+    "source": "https://en.wikipedia.org/wiki/MongoDB_Inc.",
+    "employees": 5636,
+    "employees_source": "https://en.wikipedia.org/wiki/MongoDB_Inc.",
+    "founded": 2007,
+    "founded_source": "https://en.wikipedia.org/wiki/MongoDB_Inc.",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Okta",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://www.okta.com/company/careers/",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "okta",
+    "how": "Greenhouse job board API; filter location names for India (Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "security",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 396 jobs, 108 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (OKTA).",
+    "source": "https://en.wikipedia.org/wiki/Okta,_Inc.",
+    "employees": 6366,
+    "employees_source": "https://en.wikipedia.org/wiki/Okta,_Inc.",
+    "founded": 2009,
+    "founded_source": "https://en.wikipedia.org/wiki/Okta,_Inc.",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Zscaler",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://www.zscaler.com/careers",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "zscaler",
+    "how": "Greenhouse job board API; filter location names for India (Bengaluru, Mohali, Pune)."
+   },
+   "families": [
+    "backend",
+    "platform-sre",
+    "ml-eng",
+    "security",
+    "eng-management",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 356 jobs, 85 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (ZS).",
+    "source": "https://en.wikipedia.org/wiki/Zscaler",
+    "employees": 7348,
+    "employees_source": "https://en.wikipedia.org/wiki/Zscaler",
+    "founded": 2007,
+    "founded_source": "https://en.wikipedia.org/wiki/Zscaler",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Rubrik",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://www.rubrik.com/company/careers",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "rubrik",
+    "how": "Greenhouse job board API; filter location names for India (Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "platform-sre",
+    "ml-eng",
+    "security",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 157 jobs, 32 in India; careers page answers 403 to scripts, the API is the reliable route"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (RBRK).",
+    "source": "https://en.wikipedia.org/wiki/Rubrik",
+    "employees": 3100,
+    "employees_source": "https://en.wikipedia.org/wiki/Rubrik",
+    "founded": 2014,
+    "founded_source": "https://en.wikipedia.org/wiki/Rubrik",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Snowflake",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://careers.snowflake.com/",
+   "portal": {
+    "type": "ashby",
+    "tier": 1,
+    "token": "snowflake",
+    "how": "Ashby posting API; filter location fields for India (Pune, Bengaluru)."
+   },
+   "families": [
+    "data-eng"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Ashby API: 367 jobs, 9 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (SNOW).",
+    "source": "https://en.wikipedia.org/wiki/Snowflake_Inc.",
+    "employees": 9060,
+    "employees_source": "https://en.wikipedia.org/wiki/Snowflake_Inc.",
+    "founded": 2012,
+    "founded_source": "https://en.wikipedia.org/wiki/Snowflake_Inc.",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "ServiceNow",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://careers.servicenow.com/",
+   "portal": {
+    "type": "smartrecruiters",
+    "tier": 1,
+    "token": "ServiceNow",
+    "how": "SmartRecruiters public postings API; country=in filter (Hyderabad, Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "SmartRecruiters API: 729 postings, 80 with country=in"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (NOW).",
+    "source": "https://en.wikipedia.org/wiki/ServiceNow",
+    "employees": 29187,
+    "employees_source": "https://en.wikipedia.org/wiki/ServiceNow",
+    "founded": 2003,
+    "founded_source": "https://en.wikipedia.org/wiki/ServiceNow",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Twilio",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://www.twilio.com/en-us/company/jobs",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "twilio",
+    "how": "Greenhouse job board API; filter location names for India (Bengaluru, remote India)."
+   },
+   "families": [
+    "backend",
+    "platform-sre",
+    "ml-eng",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 134 jobs, 12 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (TWLO).",
+    "source": "https://en.wikipedia.org/wiki/Twilio",
+    "employees": 5587,
+    "employees_source": "https://en.wikipedia.org/wiki/Twilio",
+    "founded": 2008,
+    "founded_source": "https://en.wikipedia.org/wiki/Twilio",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "GitLab",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://about.gitlab.com/jobs/all-jobs/",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "gitlab",
+    "how": "Greenhouse job board API; all-remote company, filter location names for India."
+   },
+   "families": [
+    "backend",
+    "frontend",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 235 jobs, 31 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (GTLB).",
+    "source": "https://en.wikipedia.org/wiki/GitLab_Inc.",
+    "employees": 2375,
+    "employees_source": "https://en.wikipedia.org/wiki/GitLab_Inc.",
+    "founded": 2014,
+    "founded_source": "https://en.wikipedia.org/wiki/GitLab_Inc.",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Elastic",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://jobs.elastic.co/",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "elastic",
+    "how": "Greenhouse job board API; distributed company, filter location names for India."
+   },
+   "families": [
+    "full-stack",
+    "ml-eng"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 409 jobs, 16 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (ESTC).",
+    "source": "https://en.wikipedia.org/wiki/Elastic_NV",
+    "employees": 3403,
+    "employees_source": "https://en.wikipedia.org/wiki/Elastic_NV",
+    "founded": 2012,
+    "founded_source": "https://en.wikipedia.org/wiki/Elastic_NV",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Harness",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://www.harness.io/company/careers",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "harnessinc",
+    "how": "Greenhouse job board API; token harnessinc; filter location names for India (Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "platform-sre",
+    "security",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 67 jobs, 14 in India"
+   },
+   "stability": {
+    "type": "startup",
+    "basis": "Privately held, venture-funded software delivery company founded in 2017.",
+    "source": "https://www.harness.io/company/careers",
+    "employees": null,
+    "employees_source": null,
+    "founded": null,
+    "founded_source": null,
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Fivetran",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://www.fivetran.com/careers",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "fivetran",
+    "how": "Greenhouse job board API; filter location names for India (Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "platform-sre",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 160 jobs, 23 in India"
+   },
+   "stability": {
+    "type": null,
+    "basis": "Privately held and venture-funded; founded 2012, past the startup age cut-off.",
+    "source": "https://www.fivetran.com/about",
+    "employees": null,
+    "employees_source": null,
+    "founded": 2012,
+    "founded_source": "https://www.fivetran.com/about",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Netskope",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://www.netskope.com/company/careers",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "netskope",
+    "how": "Greenhouse job board API; filter location names for India (Bengaluru, Pune)."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "platform-sre",
+    "ml-eng",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 121 jobs, 19 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (NTSK) since 2025.",
+    "source": "https://en.wikipedia.org/wiki/Netskope",
+    "employees": null,
+    "employees_source": null,
+    "founded": 2012,
+    "founded_source": "https://en.wikipedia.org/wiki/Netskope",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Sprinklr",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://sprinklr.wd1.myworkdayjobs.com/careers",
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "sprinklr.wd1.myworkdayjobs.com",
+    "tenant": "sprinklr",
+    "site": "careers",
+    "search": "India",
+    "how": "Workday CXS JSON: POST /wday/cxs/sprinklr/careers/jobs with searchText India (Gurugram, Bengaluru)."
+   },
+   "families": [
+    "ml-eng",
+    "security"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Workday CXS POST: 19 postings match searchText India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (CXM).",
+    "source": "https://en.wikipedia.org/wiki/Sprinklr",
+    "employees": 3245,
+    "employees_source": "https://en.wikipedia.org/wiki/Sprinklr",
+    "founded": 2009,
+    "founded_source": "https://en.wikipedia.org/wiki/Sprinklr",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "BrowserStack",
+   "segment": "saas",
+   "india_office": false,
+   "careers_url": "https://www.browserstack.com/careers",
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "browserstack.wd3.myworkdayjobs.com",
+    "tenant": "browserstack",
+    "site": "External",
+    "search": "India",
+    "how": "Workday CXS JSON: POST /wday/cxs/browserstack/External/jobs with searchText India (Mumbai, Bengaluru)."
+   },
+   "families": [
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Workday CXS POST: 28 postings match searchText India"
+   },
+   "stability": {
+    "type": null,
+    "basis": "Privately held; founded in Mumbai in 2011, past the startup age cut-off.",
+    "source": "https://en.wikipedia.org/wiki/BrowserStack",
+    "employees": 1200,
+    "employees_source": "https://en.wikipedia.org/wiki/BrowserStack",
+    "founded": 2011,
+    "founded_source": "https://en.wikipedia.org/wiki/BrowserStack",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Freshworks",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://www.freshworks.com/company/careers/",
+   "portal": {
+    "type": "smartrecruiters",
+    "tier": 1,
+    "token": "Freshworks",
+    "how": "SmartRecruiters public postings API; country=in filter (Chennai, Bengaluru, Hyderabad)."
+   },
+   "families": [
+    "full-stack",
+    "platform-sre",
+    "ml-eng",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "SmartRecruiters API: 123 postings, 35 with country=in"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (FRSH).",
+    "source": "https://en.wikipedia.org/wiki/Freshworks",
+    "employees": 5300,
+    "employees_source": "https://en.wikipedia.org/wiki/Freshworks",
+    "founded": 2010,
+    "founded_source": "https://en.wikipedia.org/wiki/Freshworks",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Mindtickle",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://www.mindtickle.com/careers/",
+   "portal": {
+    "type": "lever",
+    "tier": 1,
+    "token": "mindtickle",
+    "how": "Lever postings API (mode=json); filter India locations (Pune, Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "ml-eng",
+    "security"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Lever API: 19 postings, 17 in India"
+   },
+   "stability": {
+    "type": null,
+    "basis": "Privately held and venture-funded; HQ San Francisco; ownership details not confirmed.",
+    "source": "https://www.mindtickle.com/",
+    "employees": null,
+    "employees_source": null,
+    "founded": null,
+    "founded_source": null,
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "PubMatic",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://pubmatic.com/careers/",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "pubmatic",
+    "how": "Greenhouse job board API; filter location names for India (Pune)."
+   },
+   "families": [
+    "backend",
+    "mobile",
+    "platform-sre",
+    "ml-eng",
+    "security",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 77 jobs, 31 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (PUBM).",
+    "source": "https://en.wikipedia.org/wiki/Pubmatic",
+    "employees": null,
+    "employees_source": null,
+    "founded": 2006,
+    "founded_source": "https://en.wikipedia.org/wiki/Pubmatic",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Postman",
+   "segment": "saas",
+   "india_office": true,
+   "careers_url": "https://www.postman.com/company/careers/open-positions/",
+   "portal": {
+    "type": "other",
+    "tier": 3,
+    "how": "Open-positions page renders listings with script; no public ATS board found."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "tier3",
+    "detail": "Careers page loads (HTTP 200); listings not machine-readable"
+   },
+   "stability": {
+    "type": null,
+    "basis": "Privately held and venture-funded (Insight Partners and others); started 2012 in Bengaluru, HQ now San Francisco.",
+    "source": "https://en.wikipedia.org/wiki/Postman,_Inc.",
+    "employees": null,
+    "employees_source": null,
+    "founded": 2012,
+    "founded_source": "https://en.wikipedia.org/wiki/Postman,_Inc.",
+    "checked": "2026-11-03"
+   },
+   "alert": {
+    "url": null,
+    "note": "No public job-alert sign-up found on the careers pages."
+   }
+  },
+  {
+   "company": "Stripe",
+   "segment": "fintech",
+   "india_office": true,
+   "careers_url": "https://stripe.com/jobs/search?office_locations=Asia+Pacific--Bengaluru",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "stripe",
+    "how": "Greenhouse job board API; filter location names for India (Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "platform-sre",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 740 jobs, 46 in India"
+   },
+   "stability": {
+    "type": null,
+    "basis": "Privately held and venture-funded; founded 2009, past the startup age cut-off.",
+    "source": "https://en.wikipedia.org/wiki/Stripe,_Inc.",
+    "employees": 8500,
+    "employees_source": "https://en.wikipedia.org/wiki/Stripe,_Inc.",
+    "founded": 2009,
+    "founded_source": "https://en.wikipedia.org/wiki/Stripe,_Inc.",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Coinbase",
+   "segment": "fintech",
+   "india_office": true,
+   "careers_url": "https://www.coinbase.com/careers/positions",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "coinbase",
+    "how": "Greenhouse job board API; remote-first, filter location names for India."
+   },
+   "families": [
+    "backend",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 266 jobs, 18 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (COIN).",
+    "source": "https://en.wikipedia.org/wiki/Coinbase",
+    "employees": 3772,
+    "employees_source": "https://en.wikipedia.org/wiki/Coinbase",
+    "founded": 2012,
+    "founded_source": "https://en.wikipedia.org/wiki/Coinbase",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Razorpay",
+   "segment": "fintech",
+   "india_office": false,
+   "careers_url": "https://razorpay.com/jobs/",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "razorpaysoftwareprivatelimited",
+    "how": "Greenhouse job board API; token razorpaysoftwareprivatelimited; filter India locations (Bengaluru)."
+   },
+   "families": [
+    "security"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 28 jobs, 24 in India"
+   },
+   "stability": {
+    "type": "startup",
+    "basis": "Privately held, venture-funded payments company founded by IIT Roorkee alumni in 2014.",
+    "source": "https://razorpay.com/about/",
+    "employees": null,
+    "employees_source": null,
+    "founded": null,
+    "founded_source": null,
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Toast",
+   "segment": "fintech",
+   "india_office": true,
+   "careers_url": "https://careers.toasttab.com/jobs/search",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "toast",
+    "how": "Greenhouse job board API; filter location names for India (Chennai, Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "full-stack"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 343 jobs, 19 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (TOST).",
+    "source": "https://en.wikipedia.org/wiki/Toast,_Inc.",
+    "employees": 5700,
+    "employees_source": "https://en.wikipedia.org/wiki/Toast,_Inc.",
+    "founded": 2012,
+    "founded_source": "https://en.wikipedia.org/wiki/Toast,_Inc.",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Paytm",
+   "segment": "fintech",
+   "india_office": false,
+   "careers_url": "https://paytm.com/careers/",
+   "portal": {
+    "type": "lever",
+    "tier": 1,
+    "token": "paytm",
+    "how": "Lever postings API (mode=json); nearly all postings are in India (Noida, Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "platform-sre",
+    "ml-eng"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Lever API: 198 postings, 188 in India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "One 97 Communications is listed on NSE (PAYTM) and BSE.",
+    "source": "https://en.wikipedia.org/wiki/Paytm",
+    "employees": null,
+    "employees_source": null,
+    "founded": 2010,
+    "founded_source": "https://en.wikipedia.org/wiki/Paytm",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "CRED",
+   "segment": "fintech",
+   "india_office": false,
+   "careers_url": "https://careers.cred.club/",
+   "portal": {
+    "type": "lever",
+    "tier": 1,
+    "token": "cred",
+    "how": "Lever postings API (mode=json); all postings are in Bengaluru."
+   },
+   "families": [
+    "security"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Lever API: 14 postings, 14 in India"
+   },
+   "stability": {
+    "type": "startup",
+    "basis": "Privately held, venture-funded; founded 2018.",
+    "source": "https://cred.club/about",
+    "employees": null,
+    "employees_source": null,
+    "founded": null,
+    "founded_source": null,
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Zeta",
+   "segment": "fintech",
+   "india_office": false,
+   "careers_url": "https://www.zeta.tech/in/careers/",
+   "portal": {
+    "type": "lever",
+    "tier": 1,
+    "token": "zeta",
+    "how": "Lever postings API (mode=json); filter India locations (Bengaluru, Hyderabad)."
+   },
+   "families": [
+    "platform-sre",
+    "security"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Lever API: 31 postings, 26 in India"
+   },
+   "stability": {
+    "type": "startup",
+    "basis": "Venture-funded (SoftBank among investors), founded 2015.",
+    "source": "https://www.zeta.tech/in/about-us/",
+    "employees": 1700,
+    "employees_source": "https://www.zeta.tech/in/about-us/",
+    "founded": 2015,
+    "founded_source": "https://en.wikipedia.org/wiki/Zeta_(company)",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "PayPal",
+   "segment": "fintech",
+   "india_office": true,
+   "careers_url": "https://paypal.wd1.myworkdayjobs.com/jobs",
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "paypal.wd1.myworkdayjobs.com",
+    "tenant": "paypal",
+    "site": "jobs",
+    "search": "India",
+    "how": "Workday CXS JSON: POST /wday/cxs/paypal/jobs/jobs with searchText India (Chennai, Bengaluru, Hyderabad)."
+   },
+   "families": [
+    "backend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Workday CXS POST: 26 postings match searchText India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on Nasdaq (PYPL).",
+    "source": "https://en.wikipedia.org/wiki/PayPal",
+    "employees": 23800,
+    "employees_source": "https://en.wikipedia.org/wiki/PayPal",
+    "founded": 1998,
+    "founded_source": "https://en.wikipedia.org/wiki/PayPal",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Mastercard",
+   "segment": "fintech",
+   "india_office": true,
+   "careers_url": "https://mastercard.wd1.myworkdayjobs.com/CorporateCareers",
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "mastercard.wd1.myworkdayjobs.com",
+    "tenant": "mastercard",
+    "site": "CorporateCareers",
+    "search": "India",
+    "how": "Workday CXS JSON: POST /wday/cxs/mastercard/CorporateCareers/jobs with searchText India (Pune, Gurugram)."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Workday CXS POST: 236 postings match searchText India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (MA).",
+    "source": "https://en.wikipedia.org/wiki/Mastercard",
+    "employees": 39800,
+    "employees_source": "https://en.wikipedia.org/wiki/Mastercard",
+    "founded": 1966,
+    "founded_source": "https://en.wikipedia.org/wiki/Mastercard",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Morgan Stanley",
+   "segment": "fintech",
+   "india_office": true,
+   "careers_url": "https://ms.wd5.myworkdayjobs.com/External",
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "ms.wd5.myworkdayjobs.com",
+    "tenant": "ms",
+    "site": "External",
+    "search": "India",
+    "how": "Workday CXS JSON: POST /wday/cxs/ms/External/jobs with searchText India (Mumbai, Bengaluru technology centres)."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "data-eng",
+    "ml-eng",
+    "security"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Workday CXS POST: 99 postings match searchText India"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (MS).",
+    "source": "https://en.wikipedia.org/wiki/Morgan_Stanley",
+    "employees": 83000,
+    "employees_source": "https://en.wikipedia.org/wiki/Morgan_Stanley",
+    "founded": 1935,
+    "founded_source": "https://en.wikipedia.org/wiki/Morgan_Stanley",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "HighRadius",
+   "segment": "fintech",
+   "india_office": true,
+   "careers_url": "https://www.highradius.com/careers/",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "highradius",
+    "how": "Greenhouse job board API; filter location names for India (Hyderabad)."
+   },
+   "families": [
+    "backend",
+    "platform-sre",
+    "security"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 69 jobs, 46 in India"
+   },
+   "stability": {
+    "type": null,
+    "basis": "Privately held and venture-funded; founded 2006, HQ Houston.",
+    "source": "https://www.highradius.com/about-us/",
+    "employees": null,
+    "employees_source": null,
+    "founded": 2006,
+    "founded_source": "https://www.highradius.com/about-us/",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "PhonePe",
+   "segment": "fintech",
+   "india_office": false,
+   "careers_url": "https://www.phonepe.com/careers/job-openings/",
+   "portal": {
+    "type": "other",
+    "tier": 3,
+    "how": "Job-openings page renders listings client-side; no public ATS board found."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "tier3",
+    "detail": "Careers page loads (HTTP 200); listings not machine-readable"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Majority owned by Walmart, which is listed on Nasdaq (WMT).",
+    "source": "https://en.wikipedia.org/wiki/PhonePe",
+    "employees": null,
+    "employees_source": null,
+    "founded": 2015,
+    "founded_source": "https://en.wikipedia.org/wiki/PhonePe",
+    "checked": "2026-11-03"
+   },
+   "alert": {
+    "url": null,
+    "note": "No public job-alert sign-up found on the careers pages."
+   }
+  },
+  {
+   "company": "Infosys",
+   "segment": "services",
+   "india_office": false,
+   "careers_url": "https://www.infosys.com/careers/",
+   "portal": {
+    "type": "other",
+    "tier": 3,
+    "how": "Infosys careers portal; blocks scripted requests (403) and lists jobs client-side."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "tier3",
+    "detail": "Careers page answers 403 to scripted requests; listings not machine-readable"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NSE (INFY), BSE and NYSE.",
+    "source": "https://en.wikipedia.org/wiki/Infosys",
+    "employees": 328594,
+    "employees_source": "https://en.wikipedia.org/wiki/Infosys",
+    "founded": 1981,
+    "founded_source": "https://en.wikipedia.org/wiki/Infosys",
+    "checked": "2026-11-03"
+   },
+   "alert": {
+    "url": null,
+    "note": "Alerts need a candidate profile on the careers portal; no public sign-up URL found."
+   }
+  },
+  {
+   "company": "Tata Consultancy Services",
+   "segment": "services",
+   "india_office": false,
+   "careers_url": "https://www.tcs.com/careers",
+   "portal": {
+    "type": "other",
+    "tier": 3,
+    "how": "TCS careers site and iBegin portal; blocks scripted requests (403), JS listings."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "tier3",
+    "detail": "Careers page answers 403 to scripted requests; listings not machine-readable"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NSE (TCS) and BSE; Tata Sons owns about 72%.",
+    "source": "https://en.wikipedia.org/wiki/Tata_Consultancy_Services",
+    "employees": 584519,
+    "employees_source": "https://en.wikipedia.org/wiki/Tata_Consultancy_Services",
+    "founded": 1968,
+    "founded_source": "https://en.wikipedia.org/wiki/Tata_Consultancy_Services",
+    "checked": "2026-11-03"
+   },
+   "alert": {
+    "url": null,
+    "note": "Applications and alerts go through a registered candidate profile; no public sign-up URL confirmed."
+   }
+  },
+  {
+   "company": "Wipro",
+   "segment": "services",
+   "india_office": false,
+   "careers_url": "https://careers.wipro.com/",
+   "portal": {
+    "type": "successfactors",
+    "tier": 3,
+    "how": "SuccessFactors career site; job search runs client-side."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "eng-management",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "tier3",
+    "detail": "Careers page loads (HTTP 200); listings not machine-readable"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NSE (WIPRO), BSE and NYSE.",
+    "source": "https://en.wikipedia.org/wiki/Wipro",
+    "employees": 242156,
+    "employees_source": "https://en.wikipedia.org/wiki/Wipro",
+    "founded": 1945,
+    "founded_source": "https://en.wikipedia.org/wiki/Wipro",
+    "checked": "2026-11-03"
+   },
+   "alert": {
+    "url": "https://careers.wipro.com/",
+    "note": "Home page has a Get Job Alerts sign-up for new openings."
+   }
+  },
+  {
+   "company": "Bosch Global Software Technologies",
+   "segment": "services",
+   "india_office": true,
+   "careers_url": "https://www.bosch-softwaretechnologies.com/en/",
+   "portal": {
+    "type": "smartrecruiters",
+    "tier": 1,
+    "token": "BoschGroup",
+    "how": "SmartRecruiters public postings API; whole Bosch group, country=in filter, then keep software roles."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "mobile",
+    "platform-sre",
+    "data-eng",
+    "ml-eng",
+    "security",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "SmartRecruiters API: 4988 postings, 555 with country=in"
+   },
+   "stability": {
+    "type": "multinational subsidiary",
+    "basis": "Software arm of Robert Bosch GmbH, a privately held German group.",
+    "source": "https://en.wikipedia.org/wiki/Bosch_(company)",
+    "employees": 35000,
+    "employees_source": "https://www.bosch-softwaretechnologies.com/en/",
+    "founded": 1997,
+    "founded_source": "https://www.bosch-softwaretechnologies.com/en/",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Accenture",
+   "segment": "consultancy",
+   "india_office": true,
+   "careers_url": "https://www.accenture.com/in-en/careers",
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "accenture.wd103.myworkdayjobs.com",
+    "tenant": "accenture",
+    "site": "AccentureCareers",
+    "search": "",
+    "how": "Workday CXS JSON, global board filtered to India with the locationCountry facet.",
+    "facets": {
+     "locationCountry": [
+      "c4f78be1a8f14da0ab49ce1162348a5e"
+     ]
+    }
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "frontend",
+    "platform-sre",
+    "qa-sdet"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Workday CXS POST: searchText India returns 2000 (capped); India country facet shows 34,663 openings, many Custom Software Engineer roles"
+   },
+   "stability": {
+    "type": "listed",
+    "basis": "Listed on NYSE (ACN).",
+    "source": "https://en.wikipedia.org/wiki/Accenture",
+    "employees": 814000,
+    "employees_source": "https://en.wikipedia.org/wiki/Accenture",
+    "founded": 1989,
+    "founded_source": "https://en.wikipedia.org/wiki/Accenture",
+    "checked": "2026-11-03"
+   }
+  },
+  {
+   "company": "Sigmoid",
+   "segment": "consultancy",
+   "india_office": false,
+   "careers_url": "https://www.sigmoid.com/careers/",
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "sigmoid",
+    "how": "Greenhouse job board API; data-engineering consultancy, filter India locations (Bengaluru)."
+   },
+   "families": [
+    "backend",
+    "full-stack",
+    "data-eng",
+    "ml-eng"
+   ],
+   "verified": {
+    "date": "2026-11-03",
+    "result": "ok",
+    "detail": "Greenhouse API: 45 jobs, 40 in India"
+   },
+   "stability": {
+    "type": null,
+    "basis": "Privately held; ownership details not confirmed.",
+    "source": "https://www.sigmoid.com/",
+    "employees": null,
+    "employees_source": null,
+    "founded": null,
+    "founded_source": null,
+    "checked": "2026-11-03"
+   }
+  }
+ ]
+}

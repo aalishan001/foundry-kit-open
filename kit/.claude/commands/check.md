@@ -1,0 +1,54 @@
+---
+description: Deep fit check on chosen jobs (job ids, links or pasted JDs). Level, pay threshold and location by the engine; match and likeliness by the pack rubric. Ends with "Shortlist which?".
+argument-hint: "<job ids | links | pasted JD>"
+model: sonnet
+---
+
+1. `python engine/doctor.py --quick`.
+
+2. **Gather jobs** from `$ARGUMENTS`:
+   - **Job ids:** use them as given.
+   - **Links:** run `python engine/fetch.py text <url> --out data/tmp/jd-<n>.txt`. If it says COULDN'T FETCH (a
+     login portal, LinkedIn, Naukri, or a site not on their radar), ask them to paste the posting's text. Never guess a
+     JD.
+   - **Pasted text:** save it to `data/tmp/jd-<n>.txt`.
+   - **Add new jobs** with `python engine/jobs.py add @data/tmp/j.json --jd-file data/tmp/jd-<n>.txt`. Use
+     `{company, title, url?, location, source: {tier: 3, via: "pasted"}}`; a fetched page gets `tier: 1`.
+   - **JD copy:** every job needs one before scoring. A job without one gets
+     `python engine/jobs.py jd <id> --file data/tmp/jd-<n>.txt`.
+
+3. **Extract** from each JD: title, years required, location, remote, technology, must-haves, nice-to-haves and any
+   stated pay (in LPA).
+
+4. **Rules, exact:** `python engine/fit.py rules @data/tmp/r.json` with `{title, years_min, location, remote,
+   pay_min_lpa, pay_max_lpa, ic_ladder, company}`.
+   - Set `ic_ladder: true` for software companies, consultancies and the India offices of global companies. Read
+     the radar entry's `segment` and `india_office`.
+   - `company` lets the engine read the radar's stability for it. For a company not on the radar, when the role is
+     abroad, look up who owns it with a web search and add `stability` (one of government-owned, listed,
+     multinational subsidiary, large group, PE-backed, startup) and `stability_source` (the https page that shows
+     it). For a PE-backed company also add `employees` and `founded` (the year): abroad it counts as established only
+     at about 1,000+ employees and 10+ years. Leave out what you can't establish: the engine then says "unclear", with
+     the reason, which is the honest answer.
+   - Report the level verdict (lower = excluded, lateral, step up, unclear), the pay verdict (with the "ask for at
+     least ₹X LPA" figure when pay isn't stated), the location verdict and the company verdict. Abroad, a startup is
+     excluded; in India stability is shown, never a reason to exclude.
+
+5. **Score** with `packs/<pack>/rubric.md`, using the weights from `python engine/fit.py weights` (they change
+   when they put pay over place).
+   - For each criterion, give the score and the evidence.
+   - Search their facts with `python engine/facts.py search <JD keywords>`, and cite fact ids for every point in their
+     favour.
+   - **match** and **likeliness** run 0–100. Name the top 3 gaps, each with the closest fact they do have.
+   - Monthly in-hand pay, when a figure is known: `python engine/inhand.py <LPA> --state "<state>"`.
+
+6. **Save:** `python engine/jobs.py check @data/tmp/c.json` with `{name, jobs: [{id, fit: {level, pay, location,
+   match, likeliness, verdict, top_facts, gaps}}]}`.
+
+7. **Show** a table sorted by match, then likeliness. The columns are id, company and role, level, pay, place,
+   company stability, match, likeliness and a one-line verdict. If `locations.pay_over_place` is true, a job whose pay
+   clears their threshold goes above one that doesn't at equal match. Excluded jobs are listed separately, with the
+   reason.
+
+8. Run `python engine/backup.py commit "check: <ids>"`. End with "Shortlist which?". For each one they name, run
+   `python engine/jobs.py status <id> shortlisted`. Dismiss only on their word.

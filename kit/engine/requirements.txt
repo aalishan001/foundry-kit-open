@@ -1,0 +1,4 @@
+typst==0.15.0
+python-docx==1.2.0
+pypdf==6.21.2
+keyring==25.7.0

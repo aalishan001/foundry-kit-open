@@ -1,0 +1,816 @@
+{
+ "note": "Engineering terms. Variants match case-insensitively as whole words; exact_case variants (short acronyms, and words like Go) match only as written.",
+ "terms": [
+  {
+   "id": "api-design",
+   "canonical": "API design",
+   "variants": [
+    "api design",
+    "REST",
+    "RESTful",
+    "REST API",
+    "gRPC",
+    "GraphQL",
+    "API"
+   ],
+   "exact_case": [
+    "REST",
+    "API"
+   ],
+   "group": "practice",
+   "families": [
+    "backend",
+    "full-stack"
+   ]
+  },
+  {
+   "id": "databases",
+   "canonical": "Databases",
+   "variants": [
+    "databases",
+    "database",
+    "SQL",
+    "PostgreSQL",
+    "Postgres",
+    "MySQL",
+    "MongoDB",
+    "DynamoDB",
+    "Cassandra",
+    "Redis"
+   ],
+   "exact_case": [
+    "SQL"
+   ],
+   "group": "tech",
+   "families": [
+    "backend",
+    "full-stack",
+    "data-eng"
+   ]
+  },
+  {
+   "id": "distributed-systems",
+   "canonical": "Distributed systems",
+   "variants": [
+    "distributed systems",
+    "distributed system",
+    "microservices",
+    "microservice",
+    "event-driven",
+    "consensus",
+    "sharding"
+   ],
+   "group": "practice",
+   "families": [
+    "backend",
+    "platform-sre"
+   ]
+  },
+  {
+   "id": "system-design",
+   "canonical": "System design",
+   "variants": [
+    "system design",
+    "architecture",
+    "high-level design",
+    "HLD",
+    "low-level design",
+    "LLD",
+    "scalability"
+   ],
+   "exact_case": [
+    "HLD",
+    "LLD"
+   ],
+   "group": "practice",
+   "families": []
+  },
+  {
+   "id": "kafka",
+   "canonical": "Kafka",
+   "variants": [
+    "Kafka",
+    "Apache Kafka",
+    "message queue",
+    "RabbitMQ",
+    "SQS",
+    "Pub/Sub"
+   ],
+   "exact_case": [
+    "SQS"
+   ],
+   "group": "tech",
+   "families": [
+    "backend",
+    "data-eng"
+   ]
+  },
+  {
+   "id": "kubernetes",
+   "canonical": "Kubernetes",
+   "variants": [
+    "Kubernetes",
+    "K8s",
+    "Docker",
+    "containers",
+    "Helm",
+    "EKS",
+    "GKE",
+    "AKS"
+   ],
+   "exact_case": [
+    "K8s",
+    "EKS",
+    "GKE",
+    "AKS"
+   ],
+   "group": "tech",
+   "families": [
+    "platform-sre",
+    "backend"
+   ]
+  },
+  {
+   "id": "aws",
+   "canonical": "AWS",
+   "variants": [
+    "AWS",
+    "Amazon Web Services",
+    "EC2",
+    "S3",
+    "Lambda"
+   ],
+   "exact_case": [
+    "AWS",
+    "EC2",
+    "S3"
+   ],
+   "group": "tech",
+   "families": [
+    "platform-sre",
+    "backend"
+   ]
+  },
+  {
+   "id": "gcp",
+   "canonical": "Google Cloud",
+   "variants": [
+    "GCP",
+    "Google Cloud",
+    "Google Cloud Platform"
+   ],
+   "exact_case": [
+    "GCP"
+   ],
+   "group": "tech",
+   "families": [
+    "platform-sre"
+   ]
+  },
+  {
+   "id": "azure",
+   "canonical": "Azure",
+   "variants": [
+    "Azure",
+    "Microsoft Azure"
+   ],
+   "group": "tech",
+   "families": [
+    "platform-sre"
+   ]
+  },
+  {
+   "id": "terraform",
+   "canonical": "Infrastructure as code",
+   "variants": [
+    "Terraform",
+    "infrastructure as code",
+    "IaC",
+    "Pulumi",
+    "CloudFormation",
+    "Ansible"
+   ],
+   "exact_case": [
+    "IaC"
+   ],
+   "group": "tech",
+   "families": [
+    "platform-sre"
+   ]
+  },
+  {
+   "id": "ci-cd",
+   "canonical": "CI/CD",
+   "variants": [
+    "CI/CD",
+    "ci cd",
+    "continuous integration",
+    "continuous delivery",
+    "continuous deployment",
+    "GitHub Actions",
+    "Jenkins",
+    "GitLab CI"
+   ],
+   "exact_case": [
+    "CI/CD"
+   ],
+   "group": "practice",
+   "families": [
+    "platform-sre"
+   ]
+  },
+  {
+   "id": "observability",
+   "canonical": "Observability",
+   "variants": [
+    "observability",
+    "monitoring",
+    "Prometheus",
+    "Grafana",
+    "Datadog",
+    "OpenTelemetry",
+    "tracing",
+    "logging",
+    "alerting"
+   ],
+   "group": "practice",
+   "families": [
+    "platform-sre",
+    "backend"
+   ]
+  },
+  {
+   "id": "latency",
+   "canonical": "Latency and performance",
+   "variants": [
+    "latency",
+    "p99",
+    "p95",
+    "throughput",
+    "QPS",
+    "RPS",
+    "performance optimization",
+    "performance tuning"
+   ],
+   "exact_case": [
+    "QPS",
+    "RPS"
+   ],
+   "group": "metric",
+   "families": [
+    "backend",
+    "platform-sre"
+   ]
+  },
+  {
+   "id": "availability",
+   "canonical": "Availability and reliability",
+   "variants": [
+    "availability",
+    "uptime",
+    "SLO",
+    "SLA",
+    "SLI",
+    "error budget",
+    "reliability"
+   ],
+   "exact_case": [
+    "SLO",
+    "SLA",
+    "SLI"
+   ],
+   "group": "metric",
+   "families": [
+    "platform-sre"
+   ]
+  },
+  {
+   "id": "incident",
+   "canonical": "Incident management",
+   "variants": [
+    "incident management",
+    "incident response",
+    "on-call",
+    "on call",
+    "postmortem",
+    "post-mortem",
+    "RCA",
+    "root cause analysis"
+   ],
+   "exact_case": [
+    "RCA"
+   ],
+   "group": "practice",
+   "families": [
+    "platform-sre",
+    "backend"
+   ]
+  },
+  {
+   "id": "java",
+   "canonical": "Java",
+   "variants": [
+    "Java",
+    "Spring",
+    "Spring Boot",
+    "JVM"
+   ],
+   "exact_case": [
+    "JVM"
+   ],
+   "group": "lang",
+   "families": [
+    "backend"
+   ]
+  },
+  {
+   "id": "go",
+   "canonical": "Go",
+   "variants": [
+    "Go",
+    "Golang"
+   ],
+   "exact_case": [
+    "Go"
+   ],
+   "group": "lang",
+   "families": [
+    "backend",
+    "platform-sre"
+   ]
+  },
+  {
+   "id": "python",
+   "canonical": "Python",
+   "variants": [
+    "Python",
+    "Django",
+    "FastAPI",
+    "Flask"
+   ],
+   "group": "lang",
+   "families": [
+    "backend",
+    "data-eng",
+    "ml-eng"
+   ]
+  },
+  {
+   "id": "javascript",
+   "canonical": "JavaScript and TypeScript",
+   "variants": [
+    "JavaScript",
+    "TypeScript",
+    "JS",
+    "TS",
+    "ES6"
+   ],
+   "exact_case": [
+    "JS",
+    "TS"
+   ],
+   "group": "lang",
+   "families": [
+    "frontend",
+    "full-stack"
+   ]
+  },
+  {
+   "id": "node",
+   "canonical": "Node.js",
+   "variants": [
+    "Node.js",
+    "Node",
+    "NodeJS",
+    "Express",
+    "NestJS"
+   ],
+   "group": "lang",
+   "families": [
+    "backend",
+    "full-stack"
+   ]
+  },
+  {
+   "id": "react",
+   "canonical": "React",
+   "variants": [
+    "React",
+    "React.js",
+    "ReactJS",
+    "Next.js",
+    "Redux"
+   ],
+   "group": "tech",
+   "families": [
+    "frontend",
+    "full-stack"
+   ]
+  },
+  {
+   "id": "frontend-frameworks",
+   "canonical": "Frontend frameworks",
+   "variants": [
+    "frontend frameworks",
+    "React",
+    "Angular",
+    "Vue",
+    "Svelte",
+    "Next.js"
+   ],
+   "group": "tech",
+   "families": [
+    "frontend",
+    "full-stack"
+   ]
+  },
+  {
+   "id": "web-performance",
+   "canonical": "Web performance",
+   "variants": [
+    "web performance",
+    "Core Web Vitals",
+    "LCP",
+    "bundle size",
+    "lighthouse"
+   ],
+   "exact_case": [
+    "LCP"
+   ],
+   "group": "metric",
+   "families": [
+    "frontend"
+   ]
+  },
+  {
+   "id": "accessibility",
+   "canonical": "Accessibility",
+   "variants": [
+    "accessibility",
+    "a11y",
+    "WCAG"
+   ],
+   "exact_case": [
+    "WCAG"
+   ],
+   "group": "practice",
+   "families": [
+    "frontend"
+   ]
+  },
+  {
+   "id": "kotlin",
+   "canonical": "Android (Kotlin)",
+   "variants": [
+    "Kotlin",
+    "Android",
+    "Jetpack Compose"
+   ],
+   "group": "lang",
+   "families": [
+    "mobile"
+   ]
+  },
+  {
+   "id": "swift",
+   "canonical": "iOS (Swift)",
+   "variants": [
+    "Swift",
+    "iOS",
+    "SwiftUI",
+    "Objective-C"
+   ],
+   "group": "lang",
+   "families": [
+    "mobile"
+   ]
+  },
+  {
+   "id": "mobile-platforms",
+   "canonical": "Mobile platforms",
+   "variants": [
+    "mobile platforms",
+    "Android",
+    "iOS",
+    "React Native",
+    "Flutter"
+   ],
+   "group": "tech",
+   "families": [
+    "mobile"
+   ]
+  },
+  {
+   "id": "spark",
+   "canonical": "Spark",
+   "variants": [
+    "Spark",
+    "Apache Spark",
+    "PySpark",
+    "Databricks"
+   ],
+   "group": "tech",
+   "families": [
+    "data-eng"
+   ]
+  },
+  {
+   "id": "data-pipelines",
+   "canonical": "Data pipelines",
+   "variants": [
+    "data pipelines",
+    "data pipeline",
+    "ETL",
+    "ELT",
+    "Airflow",
+    "dbt",
+    "batch processing",
+    "stream processing"
+   ],
+   "exact_case": [
+    "ETL",
+    "ELT"
+   ],
+   "group": "practice",
+   "families": [
+    "data-eng"
+   ]
+  },
+  {
+   "id": "warehouse",
+   "canonical": "Data warehouses",
+   "variants": [
+    "data warehouse",
+    "Snowflake",
+    "BigQuery",
+    "Redshift",
+    "data lake",
+    "lakehouse"
+   ],
+   "group": "tech",
+   "families": [
+    "data-eng"
+   ]
+  },
+  {
+   "id": "machine-learning",
+   "canonical": "Machine learning",
+   "variants": [
+    "machine learning",
+    "ML",
+    "deep learning",
+    "PyTorch",
+    "TensorFlow",
+    "scikit-learn",
+    "model training"
+   ],
+   "exact_case": [
+    "ML"
+   ],
+   "group": "tech",
+   "families": [
+    "ml-eng"
+   ]
+  },
+  {
+   "id": "llm",
+   "canonical": "LLMs and generative AI",
+   "variants": [
+    "LLM",
+    "LLMs",
+    "large language model",
+    "generative AI",
+    "GenAI",
+    "RAG",
+    "retrieval augmented generation",
+    "prompt engineering",
+    "embeddings",
+    "vector database"
+   ],
+   "exact_case": [
+    "LLM",
+    "LLMs",
+    "RAG",
+    "GenAI"
+   ],
+   "group": "tech",
+   "families": [
+    "ml-eng"
+   ]
+  },
+  {
+   "id": "mlops",
+   "canonical": "MLOps",
+   "variants": [
+    "MLOps",
+    "model serving",
+    "model deployment",
+    "feature store",
+    "MLflow",
+    "Kubeflow"
+   ],
+   "exact_case": [
+    "MLOps"
+   ],
+   "group": "practice",
+   "families": [
+    "ml-eng"
+   ]
+  },
+  {
+   "id": "security",
+   "canonical": "Security",
+   "variants": [
+    "security",
+    "AppSec",
+    "application security",
+    "OWASP",
+    "threat modeling",
+    "IAM",
+    "OAuth",
+    "zero trust",
+    "vulnerability management"
+   ],
+   "exact_case": [
+    "IAM",
+    "OWASP"
+   ],
+   "group": "practice",
+   "families": [
+    "security"
+   ]
+  },
+  {
+   "id": "test-automation",
+   "canonical": "Test automation",
+   "variants": [
+    "test automation",
+    "automated testing",
+    "Selenium",
+    "Playwright",
+    "Cypress",
+    "unit testing",
+    "integration testing",
+    "TDD"
+   ],
+   "exact_case": [
+    "TDD"
+   ],
+   "group": "practice",
+   "families": [
+    "qa-sdet"
+   ]
+  },
+  {
+   "id": "people-management",
+   "canonical": "People management",
+   "variants": [
+    "people management",
+    "managed a team",
+    "direct reports",
+    "hiring",
+    "mentoring",
+    "performance reviews",
+    "1:1s"
+   ],
+   "group": "people",
+   "families": [
+    "eng-management"
+   ]
+  },
+  {
+   "id": "delivery",
+   "canonical": "Delivery and planning",
+   "variants": [
+    "delivery",
+    "roadmap",
+    "sprint planning",
+    "agile",
+    "scrum",
+    "OKRs",
+    "stakeholder management",
+    "cross-functional"
+   ],
+   "exact_case": [
+    "OKRs"
+   ],
+   "group": "people",
+   "families": [
+    "eng-management"
+   ]
+  },
+  {
+   "id": "cost",
+   "canonical": "Cost reduction",
+   "variants": [
+    "cost reduction",
+    "cost savings",
+    "cloud cost",
+    "FinOps",
+    "reduced infrastructure cost"
+   ],
+   "exact_case": [
+    "FinOps"
+   ],
+   "group": "metric",
+   "families": [
+    "platform-sre",
+    "backend"
+   ]
+  },
+  {
+   "id": "scale",
+   "canonical": "Scale",
+   "variants": [
+    "scale",
+    "users",
+    "requests per second",
+    "transactions per day",
+    "TB",
+    "PB",
+    "DAU",
+    "MAU"
+   ],
+   "exact_case": [
+    "TB",
+    "PB",
+    "DAU",
+    "MAU"
+   ],
+   "group": "metric",
+   "families": []
+  },
+  {
+   "id": "open-source",
+   "canonical": "Open source",
+   "variants": [
+    "open source",
+    "open-source",
+    "OSS",
+    "GitHub",
+    "maintainer",
+    "pull request"
+   ],
+   "exact_case": [
+    "OSS"
+   ],
+   "group": "practice",
+   "families": []
+  },
+  {
+   "id": "payments",
+   "canonical": "Payments",
+   "variants": [
+    "payments",
+    "UPI",
+    "payment gateway",
+    "PCI DSS",
+    "ledger",
+    "reconciliation"
+   ],
+   "exact_case": [
+    "UPI",
+    "PCI DSS"
+   ],
+   "group": "domain",
+   "families": [
+    "backend"
+   ]
+  },
+  {
+   "id": "search",
+   "canonical": "Search",
+   "variants": [
+    "search",
+    "Elasticsearch",
+    "OpenSearch",
+    "Solr",
+    "ranking",
+    "relevance"
+   ],
+   "group": "domain",
+   "families": [
+    "backend",
+    "ml-eng"
+   ]
+  },
+  {
+   "id": "caching",
+   "canonical": "Caching",
+   "variants": [
+    "caching",
+    "cache",
+    "Redis",
+    "Memcached",
+    "CDN"
+   ],
+   "exact_case": [
+    "CDN"
+   ],
+   "group": "tech",
+   "families": [
+    "backend"
+   ]
+  }
+ ]
+}

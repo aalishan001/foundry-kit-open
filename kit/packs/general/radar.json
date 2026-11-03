@@ -1,0 +1,6 @@
+{
+ "pack": "general",
+ "updated": "2026-11-03",
+ "note": "Empty on purpose: add the companies you want with /radar add <company> <careers URL>.",
+ "companies": []
+}

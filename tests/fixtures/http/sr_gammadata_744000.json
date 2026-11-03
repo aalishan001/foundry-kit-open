@@ -1,0 +1,14 @@
+{
+ "jobAd": {
+  "sections": {
+   "jobDescription": {
+    "title": "Job description",
+    "text": "<p>We are looking for a Senior Backend Developer to join our platform engineering team.</p><ul><li>Own the payments API: latency, availability and error budgets for 2,000 requests per second.</li><li>Design services in Java and Go on Kubernetes, with Kafka for events and PostgreSQL for the ledger.</li><li>Lead incident response and postmortems; mentor two engineers.</li></ul><p>Requirements: 6+ years building backend services. Experience with AWS and observability tooling.</p>"
+   },
+   "qualifications": {
+    "title": "Qualifications",
+    "text": "<p>B.Tech in Computer Science or equivalent; Kubernetes a plus.</p>"
+   }
+  }
+ }
+}

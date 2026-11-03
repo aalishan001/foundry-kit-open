@@ -1,0 +1,58 @@
+{
+ "note": "Weights sum to 100. Claude scores each criterion 0-1 from the JD and the user's confirmed facts, multiplies by the weight, and states the evidence for each.",
+ "criteria": [
+  {
+   "id": "family",
+   "weight": 25,
+   "what": "The role matches one of the user's target titles or areas (title and responsibilities, not just keywords)."
+  },
+  {
+   "id": "skills",
+   "weight": 30,
+   "what": "Share of the JD's must-have skills, tools and qualifications backed by confirmed facts."
+  },
+  {
+   "id": "level",
+   "weight": 15,
+   "what": "Step up = 1, lateral that clears the pay threshold = 0.8, lateral with pay unknown = 0.5, unclear = 0.4."
+  },
+  {
+   "id": "years",
+   "weight": 10,
+   "what": "Relevant years vs the JD's minimum: at or above = 1, up to 2 years short = 0.5, more = 0."
+  },
+  {
+   "id": "location",
+   "weight": 10,
+   "what": "Home country = 0.8 (+0.2 if in a preferred place), eligible abroad = 0.6, remote = 1."
+  },
+  {
+   "id": "extras",
+   "weight": 10,
+   "what": "Nice-to-haves backed by facts (domain, certifications, named tools)."
+  }
+ ],
+ "bands": [
+  {
+   "min": 75,
+   "label": "strong",
+   "advice": "tailor and apply"
+  },
+  {
+   "min": 55,
+   "label": "good",
+   "advice": "apply; address the top gap in the notes"
+  },
+  {
+   "min": 40,
+   "label": "stretch",
+   "advice": "apply only with a referral or a clear story for the gaps"
+  },
+  {
+   "min": 0,
+   "label": "weak",
+   "advice": "skip unless there's a reason"
+  }
+ ],
+ "likeliness": "Odds of an interview, separate from match: start from match, subtract for hard requirements the user lacks and for a level two or more steps up; add for a referral or a JD that mirrors their current work. Never above match + 15."
+}

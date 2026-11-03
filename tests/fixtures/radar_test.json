@@ -1,0 +1,173 @@
+{
+ "companies": [
+  {
+   "company": "Acme Cloud",
+   "careers_url": "https://boards.greenhouse.io/acmecloud",
+   "segment": "services",
+   "india_office": false,
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "acmecloud"
+   },
+   "how": "",
+   "families": [],
+   "every_days": 7,
+   "added": "2026-10-01",
+   "checks": [],
+   "source": "user"
+  },
+  {
+   "company": "Beta Pay",
+   "careers_url": "https://jobs.lever.co/betapay",
+   "segment": "product",
+   "india_office": false,
+   "portal": {
+    "type": "lever",
+    "tier": 1,
+    "token": "betapay"
+   },
+   "how": "",
+   "families": [],
+   "every_days": 7,
+   "added": "2026-10-01",
+   "checks": [],
+   "source": "user"
+  },
+  {
+   "company": "Gamma Data",
+   "careers_url": "https://careers.smartrecruiters.com/GammaData",
+   "segment": "services",
+   "india_office": false,
+   "portal": {
+    "type": "smartrecruiters",
+    "tier": 1,
+    "token": "GammaData"
+   },
+   "how": "",
+   "families": [],
+   "every_days": 7,
+   "added": "2026-10-01",
+   "checks": [],
+   "source": "user"
+  },
+  {
+   "company": "Delta Systems",
+   "careers_url": "https://delta.wd3.myworkdayjobs.com/en-US/Careers",
+   "segment": "product",
+   "india_office": true,
+   "portal": {
+    "type": "workday",
+    "tier": 1,
+    "host": "delta.wd3.myworkdayjobs.com",
+    "tenant": "delta",
+    "site": "Careers",
+    "search": "India"
+   },
+   "how": "",
+   "families": [],
+   "every_days": 7,
+   "added": "2026-10-01",
+   "checks": [],
+   "source": "user"
+  },
+  {
+   "company": "Epsilon Analytics",
+   "careers_url": "https://careers.epsilon-analytics.example.com/jobs",
+   "segment": "saas",
+   "india_office": false,
+   "portal": {
+    "type": "static",
+    "tier": 1
+   },
+   "how": "",
+   "families": [],
+   "every_days": 7,
+   "added": "2026-10-01",
+   "checks": [],
+   "source": "user"
+  },
+  {
+   "company": "Zeta Labs",
+   "careers_url": "https://www.zetalabs.example.in/careers",
+   "segment": "services",
+   "india_office": false,
+   "portal": {
+    "type": "static",
+    "tier": 1
+   },
+   "how": "",
+   "families": [],
+   "every_days": 7,
+   "added": "2026-10-01",
+   "checks": [],
+   "source": "user"
+  },
+  {
+   "company": "Eta Retail",
+   "careers_url": "https://careers.eta-retail.example.com/",
+   "segment": "services",
+   "india_office": false,
+   "portal": {
+    "type": "static",
+    "tier": 1,
+    "probe": true
+   },
+   "how": "",
+   "families": [],
+   "every_days": 7,
+   "added": "2026-10-01",
+   "checks": [],
+   "source": "user"
+  },
+  {
+   "company": "Iota Health",
+   "careers_url": "https://boards.greenhouse.io/iotahealth",
+   "segment": "services",
+   "india_office": false,
+   "portal": {
+    "type": "greenhouse",
+    "tier": 1,
+    "token": "iotahealth"
+   },
+   "how": "",
+   "families": [],
+   "every_days": 7,
+   "added": "2026-10-01",
+   "checks": [],
+   "source": "user"
+  },
+  {
+   "company": "Theta Logistics",
+   "careers_url": "https://career5.successfactors.eu/careers?company=theta",
+   "segment": "fintech",
+   "india_office": false,
+   "portal": {
+    "type": "successfactors",
+    "tier": 3
+   },
+   "how": "SuccessFactors: search 'performance'",
+   "families": [],
+   "every_days": 7,
+   "added": "2026-10-01",
+   "checks": [],
+   "source": "user"
+  },
+  {
+   "company": "Kappa Cards",
+   "careers_url": "https://www.kappacards.example.com/careers",
+   "segment": "fintech",
+   "india_office": false,
+   "portal": {
+    "type": "static",
+    "tier": 1
+   },
+   "how": "",
+   "families": [],
+   "every_days": 7,
+   "added": "2026-10-01",
+   "checks": [],
+   "source": "user"
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+{
+ "terms": [
+  {
+   "id": "sla",
+   "canonical": "Service level agreement (SLA)",
+   "variants": [
+    "service level agreement",
+    "SLA"
+   ],
+   "exact_case": [
+    "SLA"
+   ],
+   "group": "metric",
+   "families": [
+    "backend"
+   ]
+  },
+  {
+   "id": "slo",
+   "canonical": "SLO",
+   "variants": [
+    "service level objective",
+    "SLO"
+   ],
+   "exact_case": [
+    "SLO"
+   ],
+   "group": "metric",
+   "families": [
+    "backend"
+   ]
+  },
+  {
+   "id": "kafka",
+   "canonical": "Kafka",
+   "variants": [
+    "Kafka",
+    "Apache Kafka"
+   ],
+   "exact_case": [],
+   "group": "tech",
+   "families": [
+    "backend"
+   ]
+  },
+  {
+   "id": "grafana",
+   "canonical": "Grafana",
+   "variants": [
+    "Grafana"
+   ],
+   "exact_case": [],
+   "group": "tool",
+   "families": [
+    "backend"
+   ]
+  },
+  {
+   "id": "ir",
+   "canonical": "Incident response",
+   "variants": [
+    "incident response",
+    "on-call rota"
+   ],
+   "exact_case": [],
+   "group": "practice",
+   "families": [
+    "support-ops"
+   ]
+  }
+ ]
+}

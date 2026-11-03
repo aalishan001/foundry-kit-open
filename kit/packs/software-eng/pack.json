@@ -1,0 +1,218 @@
+{
+ "id": "software-eng",
+ "name": "Software engineering",
+ "version": "1.0.0",
+ "description": "Software engineers and engineering managers: backend, full-stack, frontend, mobile, platform and SRE, data, ML, security, QA. India first, with remote and abroad roles.",
+ "country_default": "IN",
+ "segments": [
+  "big-tech",
+  "product",
+  "fintech",
+  "saas",
+  "services",
+  "consultancy"
+ ],
+ "abbreviations": {
+  "sr": "senior",
+  "snr": "senior",
+  "jr": "junior",
+  "swe": "software engineer",
+  "sde": "software development engineer",
+  "mts": "member of technical staff",
+  "smts": "senior member of technical staff",
+  "lmts": "lead member of technical staff",
+  "pmts": "principal member of technical staff",
+  "em": "engineering manager",
+  "sem": "senior engineering manager",
+  "vp": "vice president",
+  "svp": "senior vice president",
+  "sre": "site reliability engineer",
+  "sdet": "software development engineer in test",
+  "i": "1",
+  "ii": "2",
+  "iii": "3",
+  "iv": "4",
+  "dev": "development"
+ },
+ "levels": [
+  {
+   "rank": 1,
+   "titles": [
+    "intern",
+    "software engineering intern",
+    "trainee",
+    "graduate engineer trainee",
+    "apprentice"
+   ],
+   "years_hint": [
+    0,
+    1
+   ]
+  },
+  {
+   "rank": 2,
+   "titles": [
+    "software engineer 1",
+    "software development engineer 1",
+    "associate software engineer",
+    "junior software engineer",
+    "software developer 1",
+    "junior developer",
+    "associate engineer",
+    "graduate software engineer",
+    "software engineer"
+   ],
+   "years_hint": [
+    0,
+    3
+   ]
+  },
+  {
+   "rank": 3,
+   "titles": [
+    "software engineer 2",
+    "software development engineer 2",
+    "software developer 2",
+    "member of technical staff"
+   ],
+   "years_hint": [
+    2,
+    5
+   ]
+  },
+  {
+   "rank": 4,
+   "titles": [
+    "senior software engineer",
+    "software development engineer 3",
+    "senior software developer",
+    "senior member of technical staff",
+    "senior engineer",
+    "senior developer"
+   ],
+   "years_hint": [
+    4,
+    9
+   ]
+  },
+  {
+   "rank": 5,
+   "titles": [
+    "staff software engineer",
+    "staff engineer",
+    "engineering manager",
+    "lead member of technical staff",
+    "tech lead manager"
+   ],
+   "years_hint": [
+    7,
+    13
+   ]
+  },
+  {
+   "rank": 6,
+   "titles": [
+    "senior staff engineer",
+    "senior staff software engineer",
+    "senior engineering manager",
+    "principal member of technical staff"
+   ],
+   "years_hint": [
+    10,
+    16
+   ]
+  },
+  {
+   "rank": 7,
+   "titles": [
+    "principal engineer",
+    "principal software engineer",
+    "director of engineering",
+    "engineering director"
+   ],
+   "years_hint": [
+    12,
+    20
+   ]
+  },
+  {
+   "rank": 8,
+   "titles": [
+    "senior principal engineer",
+    "senior director of engineering",
+    "senior director"
+   ],
+   "years_hint": [
+    15,
+    24
+   ]
+  },
+  {
+   "rank": 9,
+   "titles": [
+    "distinguished engineer",
+    "vice president of engineering",
+    "vice president engineering",
+    "head of engineering"
+   ],
+   "years_hint": [
+    18,
+    30
+   ]
+  },
+  {
+   "rank": 10,
+   "titles": [
+    "fellow",
+    "senior vice president",
+    "chief technology officer",
+    "cto"
+   ],
+   "years_hint": [
+    20,
+    35
+   ]
+  }
+ ],
+ "ladder_note": "Companies number their engineering levels differently (Software Engineer III is mid-level at some, senior at others), and Lead, Architect, Specialist and Consultant mean different things at different companies, so they are left off the ladder: the engine reports them as unclear and uses years required as a second signal. At big tech, product and SaaS companies, Engineer 1, Engineer 2 and Senior titles don't map cleanly, so a title that looks lower there is reported as unclear, not excluded.",
+ "ic_ranks": [
+  2,
+  3,
+  4
+ ],
+ "ic_unclear_segments": [
+  "big-tech",
+  "product",
+  "fintech",
+  "saas"
+ ],
+ "level_words": [
+  [
+   4,
+   "senior"
+  ],
+  [
+   5,
+   "staff"
+  ],
+  [
+   7,
+   "principal"
+  ]
+ ],
+ "level_word_position": "prefix",
+ "unclear_titles": [
+  "software engineer 3",
+  "software engineer 4",
+  "software engineer 5",
+  "software developer 3",
+  "engineer 3",
+  "lead software engineer",
+  "lead engineer",
+  "technical lead",
+  "tech lead",
+  "architect",
+  "solutions architect",
+  "software architect"
+ ]
+}

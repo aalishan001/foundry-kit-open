@@ -1,0 +1,30 @@
+From: Job Alerts <alert@jobs.example.com>
+To: someone@example.com
+Subject: New jobs for backend engineering
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============5767248859155602176=="
+
+--===============5767248859155602176==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Plain part: see the HTML version.
+
+--===============5767248859155602176==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body><h2>New jobs for you</h2>
+<table><tr><td><a href=3D"https://in.indeed.example.com/viewjob?jk=3Da1b2c3&a=
+mp;from=3Dalert">Manager =E2=80=93 Backend Platform</a><br>Nu Tech Ltd<br>L=
+ucknow, Uttar Pradesh</td></tr>
+<tr><td><a href=3D"https://in.indeed.example.com/viewjob?jk=3Dd4e5f6&amp;from=
+=3Dalert">HR Executive</a><br>Xi Corp<br>Delhi</td></tr>
+<tr><td><a href=3D"https://in.indeed.example.com/viewjob?jk=3Da1b2c3&amp;from=
+=3Dalert">View job</a></td></tr></table>
+<p><a href=3D"https://in.indeed.example.com/unsubscribe?x=3D1">Unsubscribe</a=
+></p></body></html>
+
+--===============5767248859155602176==--

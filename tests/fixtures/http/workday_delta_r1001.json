@@ -1,0 +1,7 @@
+{
+ "jobPostingInfo": {
+  "title": "Principal Software Engineer, Payments",
+  "location": "Hyderabad, India",
+  "jobDescription": "<p>We are looking for a Principal Software Engineer, Payments to join our platform engineering team.</p><ul><li>Own the payments API: latency, availability and error budgets for 2,000 requests per second.</li><li>Design services in Java and Go on Kubernetes, with Kafka for events and PostgreSQL for the ledger.</li><li>Lead incident response and postmortems; build Grafana dashboards and automate release checks (CI/CD).</li></ul><p>Requirements: 6+ years building backend services in Java or Go. </p>"
+ }
+}

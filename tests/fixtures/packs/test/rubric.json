@@ -1,0 +1,1 @@
+{"criteria": [{"id": "family", "weight": 40, "what": "In a target family."}, {"id": "level", "weight": 15, "what": "Level fit."}, {"id": "location", "weight": 10, "what": "Place."}, {"id": "skills", "weight": 35, "what": "Skills backed by facts."}], "bands": [{"min": 0, "label": "any", "advice": "-"}]}

@@ -1,0 +1,45 @@
+{
+ "families": [
+  {
+   "id": "backend",
+   "name": "Backend engineering",
+   "default": true,
+   "titles": [
+    "backend engineer",
+    "backend developer",
+    "backend"
+   ],
+   "synonyms": [
+    "api",
+    "server"
+   ],
+   "must_keywords": [
+    "service level agreement",
+    "Kafka"
+   ],
+   "nice_keywords": [
+    "Grafana"
+   ],
+   "adjacent": [
+    "support-ops"
+   ]
+  },
+  {
+   "id": "support-ops",
+   "name": "Support and operations",
+   "default": false,
+   "titles": [
+    "support engineer",
+    "operations engineer"
+   ],
+   "synonyms": [
+    "support"
+   ],
+   "must_keywords": [
+    "incident response"
+   ],
+   "nice_keywords": [],
+   "adjacent": []
+  }
+ ]
+}

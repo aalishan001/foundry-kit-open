@@ -1,0 +1,185 @@
+{
+ "id": "general",
+ "name": "Any other field",
+ "version": "1.0.0",
+ "description": "For fields without their own pack: a generic level ladder, no preset role families or companies. /start records the titles you're after, and /radar add builds your company list.",
+ "country_default": "IN",
+ "segments": [
+  "large-company",
+  "mid-size",
+  "startup",
+  "public-sector",
+  "non-profit",
+  "consultancy",
+  "other"
+ ],
+ "open_families": true,
+ "abbreviations": {
+  "sr": "senior",
+  "snr": "senior",
+  "jr": "junior",
+  "asst": "assistant",
+  "assoc": "associate",
+  "mgr": "manager",
+  "exec": "executive",
+  "agm": "assistant general manager",
+  "dgm": "deputy general manager",
+  "gm": "general manager",
+  "avp": "assistant vice president",
+  "vp": "vice president",
+  "svp": "senior vice president"
+ },
+ "levels": [
+  {
+   "rank": 1,
+   "titles": [
+    "intern",
+    "trainee",
+    "apprentice",
+    "graduate trainee",
+    "management trainee"
+   ],
+   "years_hint": [
+    0,
+    1
+   ]
+  },
+  {
+   "rank": 2,
+   "titles": [
+    "associate",
+    "executive",
+    "analyst",
+    "officer",
+    "coordinator",
+    "junior"
+   ],
+   "years_hint": [
+    0,
+    3
+   ]
+  },
+  {
+   "rank": 3,
+   "titles": [
+    "senior associate",
+    "senior executive",
+    "senior analyst",
+    "senior officer",
+    "specialist"
+   ],
+   "years_hint": [
+    2,
+    6
+   ]
+  },
+  {
+   "rank": 4,
+   "titles": [
+    "assistant manager",
+    "team lead",
+    "supervisor"
+   ],
+   "years_hint": [
+    4,
+    8
+   ]
+  },
+  {
+   "rank": 5,
+   "titles": [
+    "deputy manager"
+   ],
+   "years_hint": [
+    6,
+    10
+   ]
+  },
+  {
+   "rank": 6,
+   "titles": [
+    "manager"
+   ],
+   "years_hint": [
+    7,
+    12
+   ]
+  },
+  {
+   "rank": 7,
+   "titles": [
+    "senior manager"
+   ],
+   "years_hint": [
+    9,
+    15
+   ]
+  },
+  {
+   "rank": 8,
+   "titles": [
+    "assistant general manager",
+    "associate director"
+   ],
+   "years_hint": [
+    12,
+    18
+   ]
+  },
+  {
+   "rank": 9,
+   "titles": [
+    "deputy general manager",
+    "director"
+   ],
+   "years_hint": [
+    14,
+    22
+   ]
+  },
+  {
+   "rank": 10,
+   "titles": [
+    "general manager",
+    "senior director"
+   ],
+   "years_hint": [
+    16,
+    25
+   ]
+  },
+  {
+   "rank": 11,
+   "titles": [
+    "vice president",
+    "assistant vice president"
+   ],
+   "years_hint": [
+    18,
+    30
+   ]
+  },
+  {
+   "rank": 12,
+   "titles": [
+    "senior vice president",
+    "chief"
+   ],
+   "years_hint": [
+    20,
+    35
+   ]
+  }
+ ],
+ "ladder_note": "A generic ladder. Titles such as Lead, Consultant, Principal and Head mean different levels in different organisations, so they are left off: the engine reports them as unclear and uses years required as a second signal.",
+ "ic_ranks": [
+  2,
+  3
+ ],
+ "ic_unclear_segments": [
+  "startup",
+  "consultancy"
+ ],
+ "level_words": [],
+ "level_word_position": "prefix"
+}

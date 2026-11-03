@@ -1,0 +1,372 @@
+{
+ "families": [
+  {
+   "id": "backend",
+   "name": "Backend engineering",
+   "default": true,
+   "titles": [
+    "backend engineer",
+    "backend developer",
+    "software engineer backend",
+    "server side engineer",
+    "api engineer",
+    "java developer",
+    "golang developer",
+    "python developer",
+    "node developer",
+    "software engineer",
+    "software developer",
+    "software development engineer",
+    "member of technical staff",
+    "application developer",
+    "programmer",
+    "engineer software",
+    "sde"
+   ],
+   "synonyms": [
+    "backend",
+    "server",
+    "api",
+    "microservices"
+   ],
+   "must_keywords": [
+    "api design",
+    "databases",
+    "distributed systems"
+   ],
+   "nice_keywords": [
+    "Java",
+    "Go",
+    "Python",
+    "Node.js",
+    "Kafka",
+    "PostgreSQL",
+    "Redis",
+    "Kubernetes",
+    "AWS",
+    "gRPC"
+   ],
+   "adjacent": [
+    "full-stack",
+    "platform-sre",
+    "data-eng"
+   ]
+  },
+  {
+   "id": "full-stack",
+   "name": "Full-stack engineering",
+   "default": true,
+   "titles": [
+    "full stack engineer",
+    "full stack developer",
+    "fullstack engineer",
+    "fullstack developer",
+    "product engineer",
+    "web developer"
+   ],
+   "synonyms": [
+    "full stack",
+    "fullstack",
+    "product engineer"
+   ],
+   "must_keywords": [
+    "api design",
+    "frontend frameworks",
+    "databases"
+   ],
+   "nice_keywords": [
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Next.js",
+    "PostgreSQL",
+    "GraphQL",
+    "AWS"
+   ],
+   "adjacent": [
+    "backend",
+    "frontend"
+   ]
+  },
+  {
+   "id": "frontend",
+   "name": "Frontend engineering",
+   "default": false,
+   "titles": [
+    "frontend engineer",
+    "frontend developer",
+    "front end engineer",
+    "ui engineer",
+    "web engineer",
+    "react developer"
+   ],
+   "synonyms": [
+    "frontend",
+    "front end",
+    "ui",
+    "web"
+   ],
+   "must_keywords": [
+    "frontend frameworks",
+    "javascript",
+    "web performance"
+   ],
+   "nice_keywords": [
+    "React",
+    "TypeScript",
+    "Next.js",
+    "Accessibility",
+    "Design systems",
+    "Vue",
+    "Angular"
+   ],
+   "adjacent": [
+    "full-stack",
+    "mobile"
+   ]
+  },
+  {
+   "id": "mobile",
+   "name": "Mobile engineering",
+   "default": false,
+   "titles": [
+    "android engineer",
+    "android developer",
+    "ios engineer",
+    "ios developer",
+    "mobile engineer",
+    "mobile developer",
+    "react native developer",
+    "flutter developer"
+   ],
+   "synonyms": [
+    "android",
+    "ios",
+    "mobile"
+   ],
+   "must_keywords": [
+    "mobile platforms"
+   ],
+   "nice_keywords": [
+    "Kotlin",
+    "Swift",
+    "React Native",
+    "Flutter",
+    "Jetpack Compose",
+    "SwiftUI"
+   ],
+   "adjacent": [
+    "frontend",
+    "full-stack"
+   ]
+  },
+  {
+   "id": "platform-sre",
+   "name": "Platform, infrastructure, DevOps and SRE",
+   "default": false,
+   "titles": [
+    "site reliability engineer",
+    "devops engineer",
+    "platform engineer",
+    "infrastructure engineer",
+    "cloud engineer",
+    "production engineer",
+    "build and release engineer"
+   ],
+   "synonyms": [
+    "sre",
+    "devops",
+    "platform",
+    "infrastructure",
+    "cloud",
+    "reliability"
+   ],
+   "must_keywords": [
+    "cloud infrastructure",
+    "observability",
+    "ci cd"
+   ],
+   "nice_keywords": [
+    "Kubernetes",
+    "Terraform",
+    "AWS",
+    "GCP",
+    "Azure",
+    "Prometheus",
+    "Linux",
+    "incident management"
+   ],
+   "adjacent": [
+    "backend",
+    "security"
+   ]
+  },
+  {
+   "id": "data-eng",
+   "name": "Data engineering",
+   "default": false,
+   "titles": [
+    "data engineer",
+    "big data engineer",
+    "analytics engineer",
+    "data platform engineer",
+    "etl developer"
+   ],
+   "synonyms": [
+    "data",
+    "etl",
+    "pipeline",
+    "warehouse"
+   ],
+   "must_keywords": [
+    "data pipelines",
+    "sql"
+   ],
+   "nice_keywords": [
+    "Spark",
+    "Airflow",
+    "dbt",
+    "Kafka",
+    "Snowflake",
+    "BigQuery",
+    "Databricks"
+   ],
+   "adjacent": [
+    "backend",
+    "ml-eng"
+   ]
+  },
+  {
+   "id": "ml-eng",
+   "name": "Machine learning and AI engineering",
+   "default": false,
+   "titles": [
+    "machine learning engineer",
+    "ml engineer",
+    "ai engineer",
+    "applied scientist",
+    "mlops engineer",
+    "llm engineer",
+    "data scientist"
+   ],
+   "synonyms": [
+    "machine learning",
+    "ml",
+    "ai",
+    "llm",
+    "mlops"
+   ],
+   "must_keywords": [
+    "machine learning"
+   ],
+   "nice_keywords": [
+    "PyTorch",
+    "TensorFlow",
+    "LLM",
+    "RAG",
+    "model serving",
+    "feature store",
+    "Python"
+   ],
+   "adjacent": [
+    "data-eng",
+    "backend"
+   ]
+  },
+  {
+   "id": "security",
+   "name": "Security engineering",
+   "default": false,
+   "titles": [
+    "security engineer",
+    "application security engineer",
+    "product security engineer",
+    "cloud security engineer",
+    "devsecops engineer"
+   ],
+   "synonyms": [
+    "security",
+    "appsec",
+    "devsecops"
+   ],
+   "must_keywords": [
+    "security"
+   ],
+   "nice_keywords": [
+    "threat modeling",
+    "OWASP",
+    "IAM",
+    "penetration testing",
+    "SIEM"
+   ],
+   "adjacent": [
+    "platform-sre",
+    "backend"
+   ]
+  },
+  {
+   "id": "eng-management",
+   "name": "Engineering management",
+   "default": false,
+   "titles": [
+    "engineering manager",
+    "software development manager",
+    "technical program manager",
+    "engineering lead",
+    "head of engineering"
+   ],
+   "synonyms": [
+    "manager",
+    "management",
+    "lead"
+   ],
+   "must_keywords": [
+    "people management",
+    "delivery"
+   ],
+   "nice_keywords": [
+    "hiring",
+    "performance reviews",
+    "roadmap",
+    "stakeholder management",
+    "agile"
+   ],
+   "adjacent": [
+    "backend",
+    "full-stack"
+   ]
+  },
+  {
+   "id": "qa-sdet",
+   "name": "QA and test automation",
+   "default": false,
+   "titles": [
+    "sdet",
+    "software development engineer in test",
+    "qa engineer",
+    "test automation engineer",
+    "quality engineer"
+   ],
+   "synonyms": [
+    "qa",
+    "test",
+    "quality",
+    "automation"
+   ],
+   "must_keywords": [
+    "test automation"
+   ],
+   "nice_keywords": [
+    "Selenium",
+    "Playwright",
+    "Cypress",
+    "API testing",
+    "performance testing"
+   ],
+   "adjacent": [
+    "backend",
+    "frontend"
+   ]
+  }
+ ]
+}

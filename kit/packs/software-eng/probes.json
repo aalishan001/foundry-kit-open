@@ -1,0 +1,56 @@
+{
+ "note": "Intake prompts for /start, one at a time, in the user's words. A number they aren't sure of is kept as they said it. 'Don't know' is a valid answer.",
+ "common": [
+  "For each role: the product or system you worked on, who used it, and how big it was (users, requests per second, data volume, money moved).",
+  "Your stack in each role: languages, frameworks, databases, cloud, and how deep (built from scratch, owned, maintained, used).",
+  "A design decision you drove: the options, what you chose, why, and what happened afterwards.",
+  "A production incident you handled: what broke, how you found it, how long it took, and what changed after.",
+  "Something you made faster, cheaper or more reliable, with the before and after numbers if you have them (latency, cost, error rate, build time).",
+  "Team: who you worked with, whether you led, mentored or interviewed anyone, and how many.",
+  "Open source, side projects, talks, patents, writing, awards, certifications: with links and years."
+ ],
+ "families": {
+  "backend": [
+   "The services or APIs you owned: what they did, their traffic, latency targets and dependencies.",
+   "Data stores you designed or migrated: schema, size, indexing, consistency choices.",
+   "Queues, caches or async work you built, and why."
+  ],
+  "full-stack": [
+   "A feature you built end to end: UI, API and data, and how you shipped it.",
+   "How you measured whether it worked (adoption, conversion, errors)."
+  ],
+  "frontend": [
+   "Apps or components you owned, the framework, and the size of the codebase or team.",
+   "Performance or accessibility work, with numbers (load time, Core Web Vitals, bundle size)."
+  ],
+  "mobile": [
+   "Apps you shipped: platform, users or downloads, ratings, crash-free rate.",
+   "Release process, offline support, or performance work you did."
+  ],
+  "platform-sre": [
+   "Infrastructure you ran: cloud, cluster size, number of services, deploy frequency.",
+   "SLOs you owned and your on-call record; incidents you led.",
+   "Cost or reliability improvements, with numbers."
+  ],
+  "data-eng": [
+   "Pipelines you built: sources, volume per day, latency, tools.",
+   "Data quality or cost work, with numbers."
+  ],
+  "ml-eng": [
+   "Models or LLM features you shipped: the task, the data, the metric, and the result in production.",
+   "How you served, monitored and evaluated them."
+  ],
+  "security": [
+   "Security programmes or tools you owned; vulnerabilities found or fixed; audits passed."
+  ],
+  "eng-management": [
+   "Team size and shape, hiring you did, attrition, and how you ran delivery.",
+   "A hard people situation and how you handled it.",
+   "What your team shipped and its impact."
+  ],
+  "qa-sdet": [
+   "Test frameworks you built or owned; coverage, flakiness and run time before and after.",
+   "Bugs or incidents your tests caught."
+  ]
+ }
+}

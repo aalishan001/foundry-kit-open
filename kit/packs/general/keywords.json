@@ -1,0 +1,106 @@
+{
+ "note": "A few cross-field terms; the user's own facts carry the rest.",
+ "terms": [
+  {
+   "id": "excel",
+   "canonical": "Excel",
+   "variants": [
+    "Excel",
+    "Microsoft Excel",
+    "spreadsheets",
+    "pivot tables",
+    "VLOOKUP"
+   ],
+   "exact_case": [
+    "VLOOKUP"
+   ],
+   "group": "tool",
+   "families": []
+  },
+  {
+   "id": "sql",
+   "canonical": "SQL",
+   "variants": [
+    "SQL",
+    "MySQL",
+    "PostgreSQL"
+   ],
+   "exact_case": [
+    "SQL"
+   ],
+   "group": "tool",
+   "families": []
+  },
+  {
+   "id": "bi",
+   "canonical": "BI dashboards",
+   "variants": [
+    "Power BI",
+    "Tableau",
+    "Looker",
+    "dashboards",
+    "BI"
+   ],
+   "exact_case": [
+    "BI"
+   ],
+   "group": "tool",
+   "families": []
+  },
+  {
+   "id": "stakeholders",
+   "canonical": "Stakeholder management",
+   "variants": [
+    "stakeholder management",
+    "stakeholders",
+    "cross-functional"
+   ],
+   "group": "people",
+   "families": []
+  },
+  {
+   "id": "people",
+   "canonical": "People management",
+   "variants": [
+    "people management",
+    "team management",
+    "direct reports",
+    "hiring",
+    "mentoring"
+   ],
+   "group": "people",
+   "families": []
+  },
+  {
+   "id": "budget",
+   "canonical": "Budget ownership",
+   "variants": [
+    "budget",
+    "P&L",
+    "cost reduction",
+    "cost savings"
+   ],
+   "exact_case": [
+    "P&L"
+   ],
+   "group": "metric",
+   "families": []
+  },
+  {
+   "id": "process",
+   "canonical": "Process improvement",
+   "variants": [
+    "process improvement",
+    "Lean",
+    "Six Sigma",
+    "automation",
+    "SOP"
+   ],
+   "exact_case": [
+    "SOP"
+   ],
+   "group": "practice",
+   "families": []
+  }
+ ]
+}

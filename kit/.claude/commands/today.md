@@ -13,6 +13,8 @@ effort: low
    - shortlisted jobs not applied;
    - applications to follow up;
    - open profile questions.
+   - postings no longer on their boards: ask them to confirm whether the role closed (`/update`); the application
+     stands until they say so.
 3. End with **the next three actions**, most valuable first, each naming the command. For example: "Prepare for
    Thursday's round with /grill j-0012", "/sweep (9 companies due)", "Follow up with Acme (a-0003): 16 days without
    news".

@@ -16,7 +16,7 @@ REPO = pathlib.Path(__file__).resolve().parent.parent
 KIT = REPO / "kit"
 API = "https://openrouter.ai/api/v1"
 SIM_MODEL = "anthropic/claude-haiku-5.5"
-MAX_TURNS = {"start": 40, "grill": 5, "prep": 4, "tailor": 4, "check": 3, "applied": 3, "update": 3, "radar": 2, "sweep": 3, "today": 2, "help": 1}
+MAX_TURNS = {"refer": 3, "start": 40, "grill": 5, "prep": 4, "tailor": 4, "check": 3, "applied": 3, "update": 3, "radar": 2, "sweep": 3, "today": 2, "help": 1}
 sys.path.insert(0, str(REPO / "tests" / "fixtures" / "tailor"))
 import profile as persona   # noqa: E402  (the invented candidate)
 
@@ -144,8 +144,8 @@ def run_command(root, key, name, args, model=None, log=None, interactive=True):
 # ---------------------------------------------------------------- plans
 WEEK = [("start", ""), ("radar", ""), ("sweep", ""), ("check", "j-0001"), ("tailor", "j-0001"), ("prep", "j-0001"),
         ("applied", "j-0001 today via careers site, DRY RUN"), ("update", "j-0001: got a call for interview round 1 on Friday"),
-        ("grill", "j-0001 10"), ("today", ""), ("help", "")]
-PER_WEEK = {"sweep": 5, "today": 5, "check": 3, "tailor": 1, "prep": 1, "grill": 1, "update": 2, "applied": 1, "radar": 1, "help": 0}
+        ("grill", "j-0001 10"), ("refer", "ask c-0001 for j-0001"), ("today", ""), ("help", "")]
+PER_WEEK = {"refer": 3, "sweep": 5, "today": 5, "check": 3, "tailor": 1, "prep": 1, "grill": 1, "update": 2, "applied": 1, "radar": 1, "help": 0}
 
 def ensure_job(root):
     """A job with a JD and a seeded profile for /check etc. if the sweep or /start didn't run (invented posting)."""
@@ -188,7 +188,10 @@ def week(a):
     rows = []
     for name, args in WEEK:
         if only and name not in only: continue
-        if name in ("check", "tailor", "prep", "applied", "update", "grill"): ensure_job(root)
+        if name in ("check", "tailor", "prep", "applied", "update", "grill", "refer"): ensure_job(root)
+        if name == "refer":
+            (root / "data" / "tmp" / "ct.json").write_text(json.dumps({"name": "Priya Rao", "company": "Acme Cloud", "how_known": "former teammate"}), encoding="utf-8")
+            subprocess.run([sys.executable, str(root / "engine" / "refer.py"), "add", "@data/tmp/ct.json"], env=dict(os.environ, FOUNDRY_HOME=str(root)), cwd=str(root), capture_output=True)
         r = run_command(root, key, name, args, log=log, interactive=name not in ("help", "today"))
         r["model"] = swap.get(tiers["tiers"][tiers["commands"][name]], tiers["tiers"][tiers["commands"][name]])
         rows.append(r); print(json.dumps(r), flush=True)

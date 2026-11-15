@@ -45,10 +45,14 @@ it first.
 
 7. **ATS check:** run `python engine/ats.py keywords <id>/v<N>`. Report the keywords covered and missing. A missing
    keyword goes into the resume only if a confirmed fact supports it; otherwise it's a gap for the notes.
+   Then the check loop: `python engine/ats.py check <id>/v<N>`. Fix what it lists (the JD's exact spelling, a
+   headline title they never held, one bullet per fact, a term twice in Skills, too few bullets, stock wording), re-run
+   claims.py if you changed a line, and check again until it passes. If something can't be fixed without inventing,
+   say so and leave it. Render refuses until this passes.
 
 8. **Render:** `python engine/render.py <id>/v<N>`. It writes PDF and/or DOCX to `Resumes/<Company> - <Role>/`,
    checks that the two files hold the same words in the same order, and runs the ATS lint. Report the file paths
-   and the page count.
+   and the page count. `Resumes/index.md` lists every role with its latest files (the .docx opens in Google Docs).
 
 9. **Show them:** the resume text section by section, the notes, the keyword coverage and the claim-check result.
    Ask what to change. Each round of changes is a new version (v<N+1>) and goes through steps 5–8 again.

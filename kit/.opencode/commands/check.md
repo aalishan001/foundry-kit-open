@@ -36,6 +36,8 @@ In bash, run only one `python engine/<script>.py ...` command per call (never `p
    - Report the level verdict (lower = excluded, lateral, step up, unclear), the pay verdict (with the "ask for at
      least ₹X LPA" figure when pay isn't stated), the location verdict and the company verdict. Abroad, a startup is
      excluded; in India stability is shown, never a reason to exclude.
+   - Report the years verdict too (what the posting asks vs their years): it feeds the years criterion, never an
+     exclusion.
 
 5. **Score** with `packs/<pack>/rubric.md`, using the weights from `python engine/fit.py weights` (they change
    when they put pay over place).

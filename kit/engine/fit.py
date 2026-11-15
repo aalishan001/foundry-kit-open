@@ -8,7 +8,9 @@ stays with Claude; these are the parts that must never be guessed.
                                             -> level, pay, location and company verdicts against their search rules (JSON)
   fit.py family "<title>" ["<jd text>"]     which role families a posting belongs to
   fit.py weights                            the pack rubric's weights, adjusted for their profile (pay over place)
-Rules: a role below their current level is excluded, always. A lateral role must clear their raise threshold
+Rules: a role below their current level is excluded, always; so is one more than rules.max_steps_up levels above it
+(no cap unless they set one). At home, locations.home_cities_only (off unless they set it) keeps only those cities and
+remote roles. The years a posting asks for are read and compared with theirs, as a fit input that never excludes. A lateral role must clear their raise threshold
 (lateral_min_raise_pct, 20 by default) on the basis they chose (CTC or fixed). Preferred places only add a boost;
 they never filter. Countries outside their eligible list (plus their abroad list) are excluded. A role abroad needs an
 established company (rules.abroad_stability: every stability type but startup, by default). A PE-backed company
@@ -23,6 +25,42 @@ import kw
 GEO = load(KIT / "engine" / "geo.json", {})
 STABILITY = ["government-owned", "listed", "multinational subsidiary", "large group", "PE-backed", "startup"]
 ESTABLISHED = [t for t in STABILITY if t != "startup"]
+YEARS = re.compile(r"(?i)\b(\d{1,2})\s*(?:\+|plus|-|–|to)?\s*(?:\d{1,2})?\s*\+?\s*(?:yrs?|years?)\b")
+JD_YEARS = re.compile(r"(?i)(?<![\d.])(\d{1,2})(?:\.\d)?\s*\+?\s*(?:(?:-|–|to)\s*\d{1,2}\s*\+?\s*)?(?:yrs?|years?)(?:'s?)?\s+"
+                      r"(?:of\s+)?(?:[\w/&,.()-]+\s+){0,6}?(?:experience|exp\b)")
+YEARS_TOLERANCE = 2
+
+def title_years(title):
+    """The smallest years figure a title states ("3 - 5 years", "8+ yrs", "(3-5)"), or None."""
+    hits = [int(m.group(1)) for m in YEARS.finditer(title or "")]
+    hits += [int(m.group(1)) for m in re.finditer(r"\((\d{1,2})\s*-\s*\d{1,2}\)", title or "")]
+    return min(hits) if hits else None
+
+def jd_years(text, pick=min):
+    """The years of experience a JD asks for ("4+ years of backend experience"), or None. Free text takes the smallest,
+    so an "or" (Bachelor's + 5 or Master's + 3) never undersells what they'd qualify for."""
+    ys = [int(m.group(1)) for m in JD_YEARS.finditer(text or "") if 0 < int(m.group(1)) <= 20]
+    return pick(ys) if ys else None
+
+def my_years():
+    """Years since their earliest job start (profile/employment.json), to one decimal, or None."""
+    import datetime as dt
+    from _common import PROFILE, today
+    starts = [e.get("start") for e in load(PROFILE / "employment.json", []) or [] if re.fullmatch(r"\d{4}-\d{2}", str(e.get("start") or ""))]
+    if not starts: return None
+    return round((today() - dt.date.fromisoformat(min(starts) + "-01")).days / 365.25, 1)
+
+def years_rule(asked, mine=None):
+    """How their years compare with what the posting asks: a fit input with its reason, never an exclusion."""
+    mine = my_years() if mine is None else mine
+    tol = pack().get("years_tolerance", YEARS_TOLERANCE)
+    out = {"asked": asked, "theirs": mine, "tolerance": tol}
+    if asked is None: out.update(verdict="unstated", why="the posting doesn't state years")
+    elif mine is None: out.update(verdict="unknown", why=f"asks {asked}+ years; their start dates aren't recorded yet")
+    elif mine >= asked: out.update(verdict="meets", why=f"asks {asked}+ years; they have {mine:g}")
+    elif mine >= asked - tol: out.update(verdict="close", why=f"asks {asked}+ years; they have {mine:g} (within {tol})")
+    else: out.update(verdict="short", why=f"asks {asked}+ years; they have {mine:g}, more than {tol} short: say how they bridge it")
+    return out
 
 # ---------------------------------------------------------------- level
 def _expand(title):
@@ -34,7 +72,7 @@ def _expand(title):
 def level_of(title):
     """(rank, matched ladder title) or (None, None). The longest ladder title found in the title wins, so
     'assistant general manager' beats 'manager'."""
-    t = " " + _expand(title) + " "
+    t = " " + _expand(YEARS.sub(" ", title or "")) + " "   # "(3 - 5 years)" is not a level number
     if any(f" {norm(u)} " in t for u in pack().get("unclear_titles") or []): return (None, None)   # means different levels at different companies
     best = None
     for lv in pack().get("levels", []):
@@ -69,6 +107,8 @@ def level_rule(title, years_min=None, current=None, ic=False):
     if rank < cur and ic and rank in (pack().get("ic_ranks") or []):
         out.update(verdict="unclear", why=f"{matched} looks lower, but this company's IC titles don't map onto the ladder: check years and pay")
     elif rank < cur: out.update(verdict="lower", why=f"{matched} is below their level: excluded (never a lower role)")
+    elif (up := (search_rules().get("rules") or {}).get("max_steps_up")) is not None and rank > cur + up and not (ic and rank in (pack().get("ic_ranks") or [])):
+        out.update(verdict="too senior", why=f"{matched} is {rank - cur} levels above theirs (their limit is {up}): excluded")
     elif rank == cur: out.update(verdict="lateral", why=f"{matched} is their current level: needs the pay rise threshold")
     else: out.update(verdict="step up", why=f"{matched} is above their current level")
     return out
@@ -121,6 +161,19 @@ def eligible(L):
     home = L.get("home_country", "IN")
     return set(L.get("eligible_countries") or ["IN"]) | {home} | {a["country"] for a in abroad_list(L)}
 
+# The same city under its old and new names: "Bangalore" is "Bengaluru" for home_cities_only.
+CITY_ALIASES = {"bangalore": "bengaluru", "gurgaon": "gurugram", "bombay": "mumbai", "madras": "chennai", "calcutta": "kolkata",
+                "new delhi": "delhi", "poona": "pune", "trivandrum": "thiruvananthapuram", "cochin": "kochi", "vizag": "visakhapatnam",
+                "mysore": "mysuru", "secunderabad": "hyderabad"}
+
+def city_key(name): n = norm(name or ""); return CITY_ALIASES.get(n, n)
+
+def in_cities(location, cities):
+    want = {city_key(c) for c in cities}
+    found = place(location)["city"]
+    if found and city_key(found) in want: return True
+    return any(_has(location or "", c) for c in cities) or any(_has(location or "", a) for a, b in CITY_ALIASES.items() if b in want)
+
 def location_rule(location, remote=False, rules=None):
     s = rules or search_rules()
     L = s.get("locations") or {}
@@ -130,6 +183,10 @@ def location_rule(location, remote=False, rules=None):
     texts = " ".join(x for x in (location or "", p.get("state") or "", (p.get("region") or "") + " india") if x)
     pref = [x for x in L.get("preferred") or [] if _has(texts, x)]   # a city, a state, or a region ("north India")
     avoid = [x for x in L.get("avoid") or [] if _has(texts, x)]
+    only = L.get("home_cities_only") or []   # their explicit choice: at home, only these cities (or remote)
+    if only and not remote and not _has(location or "", "remote") and p["country"] == home and not in_cities(location, only):
+        out.update(verdict="excluded", score=-9, why=f"{p.get('city') or p.get('state') or 'that place'} is outside their cities ({', '.join(only)}) and not remote")
+        out["preferred"] = []; return out
     if p["country"] is None and not remote:
         out.update(verdict="unclear", score=0, why="location not recognised: read it yourself")
     elif p["country"] is not None and p["country"] not in ok_countries and not (remote and L.get("remote_ok", True)):
@@ -212,7 +269,7 @@ def prefilter(job, rules=None, company=None):
     """(keep, reason). Deterministic: drops only what the rules exclude for certain. company: its radar entry."""
     s = rules or search_rules()
     lv = level_rule(job.get("title", ""), current=(s.get("current") or {}).get("ladder_rank"), ic=ic_unclear(company))
-    if lv["verdict"] == "lower": return False, lv["why"]
+    if lv["verdict"] in ("lower", "too senior"): return False, lv["why"]
     loc = location_rule(job.get("location", ""), job.get("remote", False), s)
     if loc["verdict"] == "excluded": return False, loc["why"]
     t, src, emp, fnd = stability_of(company)
@@ -237,13 +294,14 @@ def rules(raw):
         c = find(load_radar(), d["company"])
         if c and (c.get("stability") or {}).get("type"): stab, src, emp, fnd = stability_of(c)
     if stab is not None and stab not in STABILITY: die(f"stability must be one of {', '.join(STABILITY)} (or leave it out when unknown)")
-    out = {"level": lv, "pay": pay_rule(lv["verdict"], d.get("pay_min_lpa"), d.get("pay_max_lpa")), "location": loc,
+    asked = d.get("years_min") if d.get("years_min") is not None else (jd_years(d.get("jd_text")) or title_years(d["title"]))
+    out = {"level": lv, "pay": pay_rule(lv["verdict"], d.get("pay_min_lpa"), d.get("pay_max_lpa")), "location": loc, "years": years_rule(asked),
            "company": company_rule(stab, loc["verdict"], source=src, employees=emp, founded=fnd),
            "families": [{"id": f, "score": s} for f, s, _ in families_of(d["title"], d.get("jd_text", ""))[:3]]}
-    out["excluded"] = (lv["verdict"] == "lower" or out["pay"]["verdict"] == "below" or loc["verdict"] == "excluded"
+    out["excluded"] = (lv["verdict"] in ("lower", "too senior") or out["pay"]["verdict"] == "below" or loc["verdict"] == "excluded"
                        or out["company"]["verdict"] == "excluded")
     print(json.dumps(out, indent=1, ensure_ascii=False))
-    for k in ("level", "pay", "location", "company"): print(f"# {k}: {out[k]['verdict']} - {out[k]['why']}", file=sys.stderr)
+    for k in ("level", "pay", "location", "company", "years"): print(f"# {k}: {out[k]['verdict']} - {out[k]['why']}", file=sys.stderr)
     return 0
 
 def weights(rules=None):

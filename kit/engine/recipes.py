@@ -108,7 +108,11 @@ def plan(rules=None):
             "gmail": gmail_filter()}
 
 def gmail_filter():
-    from_q = " OR ".join(SENDERS)
+    try:
+        import alerts
+        own = sorted({x for v in alerts.senders().values() for x in v})
+    except SystemExit: own = []
+    from_q = " OR ".join(SENDERS + [x for x in own if x not in SENDERS])
     return {"from": from_q, "words": "subject:(" + " OR ".join(SUBJECT_WORDS) + ")", "label": LABEL,
             "search": f"from:({from_q}) OR subject:(" + " OR ".join(SUBJECT_WORDS) + ")"}
 

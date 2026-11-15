@@ -40,6 +40,7 @@ def defaults():
                    "locations": {"home_country": "IN", "eligible_countries": ["IN"], "preferred": [], "avoid": [],
                                  "abroad": [], "pay_over_place": False, "remote_ok": True, "relocate": True},
                    "notice_period_days": None, "deal_breakers": [],
+                   "referrals": {"daily_cap": 20, "nudge_days": 5},
                    "gmail": {"enabled": False, "mode": "imap", "address": "", "label": "Job Alerts", "checked": None},
                    "answers": [], "source": "engine", "updated": today().isoformat()},
         "employment": [], "education": [],

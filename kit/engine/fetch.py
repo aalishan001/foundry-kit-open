@@ -9,7 +9,7 @@ Jooble, JSearch), and any host on their radar (its careers page, its Workday sit
 organisation's domain). FOUNDRY_FIXTURES=<dir> serves recorded responses from <dir>/index.json instead of the network
 (tests and dry runs). API keys are passed as `secrets` and replaced by *** in cache keys, fixture keys and errors.
 """
-import hashlib, json, os, pathlib, sys, time, urllib.error, urllib.request, urllib.robotparser
+import hashlib, json, os, pathlib, sys, time, urllib.error, urllib.request
 from urllib.parse import urlparse
 from _common import CACHE, DATA, load, save, die, rel
 
@@ -24,6 +24,8 @@ JOB_PLATFORMS = ("ashbyhq.com", "myworkdayjobs.com", "greenhouse.io", "lever.co"
                  "zohorecruit.in", "turbohire.co", "workable.com", "bamboohr.com", "freshteam.com", "peoplestrong.com")
 TWO_LEVEL = {"co.in", "org.in", "net.in", "gov.in", "ac.in", "firm.in", "gen.in", "ind.in", "co.uk", "org.uk", "com.au", "com.br",
              "co.jp", "co.za", "com.sg", "com.my", "com.cn", "co.nz"}
+
+PORTAL_HOSTS = {"amazon": "www.amazon.jobs"}   # company job APIs whose host is fixed by the portal type
 
 class FetchError(Exception): pass
 
@@ -44,6 +46,7 @@ def radar_hosts():
         for u in (c.get("careers_url"), (c.get("portal") or {}).get("jobs_url")):
             if u: hosts.add(host_of(u))
         if (c.get("portal") or {}).get("host"): hosts.add(c["portal"]["host"].lower())
+        if (c.get("portal") or {}).get("type") in PORTAL_HOSTS: hosts.add(PORTAL_HOSTS[c["portal"]["type"]])
     return hosts
 
 def allowed(url):
@@ -82,19 +85,52 @@ def _polite(host):
     if gap < MIN_GAP: time.sleep(MIN_GAP - gap)
     _last[host] = time.monotonic()
 
+AGENT = "foundry-kit"
+
+def robots_rules(text, agent=AGENT):
+    """[(allow?, path pattern)] for this agent from a robots.txt: the group naming it, else the * group (RFC 9309)."""
+    groups, cur, last_was_agent = [], None, False
+    for raw in text.splitlines():
+        line = raw.split("#", 1)[0].strip()
+        if ":" not in line: continue
+        k, v = (x.strip() for x in line.split(":", 1)); k = k.lower()
+        if k == "user-agent":
+            if not last_was_agent: cur = {"agents": [], "rules": []}; groups.append(cur)
+            cur["agents"].append(v.lower()); last_was_agent = True
+        elif k in ("allow", "disallow") and cur is not None:
+            last_was_agent = False
+            if v: cur["rules"].append((k == "allow", v))
+        else: last_was_agent = False
+    mine = [g for g in groups if any(a != "*" and a in agent.lower() for a in g["agents"])]
+    pick = mine or [g for g in groups if "*" in g["agents"]]
+    return [r for g in pick for r in g["rules"]]
+
+def _match(pattern, path):
+    import re as _re
+    rx = "".join(".*" if ch == "*" else ("$" if ch == "$" and i == len(pattern) - 1 else _re.escape(ch)) for i, ch in enumerate(pattern))
+    return _re.match(rx, path) is not None
+
+def robots_allows(rules, path):
+    """The longest matching rule wins; on a tie, allow wins; no rule means allowed (RFC 9309)."""
+    best = None
+    for allow, pat in rules:
+        if _match(pat, path) and (best is None or len(pat) > len(best[1]) or (len(pat) == len(best[1]) and allow)): best = (allow, pat)
+    return True if best is None else best[0]
+
 def _robots_ok(url):
     u = urlparse(url); base = f"{u.scheme}://{u.netloc}"
     if base not in _robots:
-        rp = urllib.robotparser.RobotFileParser()
         try:
+            if os.environ.get("FOUNDRY_FIXTURES"): raise OSError("fixtures: no robots.txt")
             _polite(u.hostname)
             req = urllib.request.Request(base + "/robots.txt", headers={"User-Agent": UA})
-            with urllib.request.urlopen(req, timeout=TIMEOUT) as r: rp.parse(r.read().decode("utf-8", "replace").splitlines())
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as r: rules = robots_rules(r.read().decode("utf-8", "replace"))
         except (urllib.error.URLError, OSError, ValueError):
-            rp = None   # no robots.txt (or unreachable): allowed
-        _robots[base] = rp
-    rp = _robots[base]
-    return rp is None or rp.can_fetch(UA, url)
+            rules = []   # no robots.txt (or unreachable): allowed
+        _robots[base] = rules
+    path = u.path or "/"
+    if u.query: path += "?" + u.query
+    return robots_allows(_robots[base], path)
 
 def get(url, method="GET", body=None, as_json=False, robots=False, cache_hours=CACHE_HOURS, headers=None, secrets=()):
     """The response body (text, or parsed JSON). Raises FetchError with a plain reason."""

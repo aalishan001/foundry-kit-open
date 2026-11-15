@@ -23,6 +23,8 @@ APPLYING
                      Example: /applied j-0004 today via careers site, sent v2
 
 KEEPING TRACK
+/refer               referrals: who you know at each company, the ask message to send (you send it), and
+                     what happened. Example: /refer ask c-0002 for j-0004   /refer Priya said yes
 /update <news>       record what happened: "Acme called, interview round 1 on Friday", "rejected by Beta",
                      "drop j-0009", a new fact about your work, or a change to your rules
                      ("add Oman after the UAE", "make the threshold 25%").

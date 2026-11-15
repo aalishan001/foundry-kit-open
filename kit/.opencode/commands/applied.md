@@ -26,4 +26,7 @@ In bash, run only one `python engine/<script>.py ...` command per call (never `p
 
 5. Run `python engine/backup.py commit "applied: <a-id>"`.
 
+An application sent before they started using the kit: `python engine/jobs.py applied @data/tmp/a.json --backfill`
+(no JD copy or resume needed; it's marked as backfilled).
+
 Arguments for this command: $ARGUMENTS

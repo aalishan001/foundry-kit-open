@@ -107,11 +107,12 @@ Sonnet 5.5 for `/tailor` and `/prep`):
 | `/grill` (a short mock interview) | $0.02–$0.03 |
 | `/sweep` (ranking new roles) | $0.03 |
 | `/applied` | $0.05 |
+| `/refer` (one ask written) | $0.01 |
 | `/prep` (one job's gaps) | $0.34 |
 | `/tailor` (one pass: PDF, Word, notes and both fact checks) | $0.41; each revision round costs more |
 
 The morning sweep uses no AI and costs nothing. A typical week (five sweeps and `/today`s, three checks, one tailored
-resume, one prep, one mock interview, a few updates) comes to about **$1.04**, so **$10 lasts about 9 weeks**.
+resume, one prep, one mock interview, three referral asks, a few updates) comes to about **$1.08**, so **$10 lasts about 9 weeks**.
 
 ## If something goes wrong
 

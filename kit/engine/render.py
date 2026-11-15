@@ -152,6 +152,7 @@ def main(a):
     resume = load(d / "resume.json")
     checks = load(d / "checks.json", {}) or {}
     if (checks.get("claims") or {}).get("passed") is not True: die(f"run claims.py {a[0]} first: every line must trace to a confirmed fact")
+    if (checks.get("tailor") or {}).get("passed") is not True: die(f"run ats.py check {a[0]} first: the tailoring checks must pass")
     job = find(load_jobs()["jobs"], jid) or die(f"no job {jid}")
     prefs = load(PROFILE / "resume_prefs.json", {}) or {}
     fmts = (opt(a, "--format") or ",".join(resume.get("format") or prefs.get("format") or ["pdf", "docx"])).split(",")
@@ -180,7 +181,27 @@ def main(a):
         shutil.copyfile(p, dest / p.name)
         pages = f"{lint[f]['pages']} page(s); " if lint[f]["pages"] else ""
         print(f"{f.upper()}: {rel(dest / p.name)}  ({pages}parity: {par[f]}; ATS lint: OK)")
+    write_index()
     return 0
+
+def write_index():
+    """Resumes/index.md: every role with its latest resume files, so the right one is easy to find and attach."""
+    from _common import read_jsonl
+    from jobs import load_jobs
+    jobs = {j["id"]: j for j in load_jobs()["jobs"]}
+    latest = {}
+    for r in read_jsonl(DATA / "renders.jsonl"):
+        k = r["job"]
+        if k not in latest or r["version"] >= latest[k]["version"]: latest.setdefault(k, {"version": r["version"], "formats": {}, "ts": r["ts"]})
+        if r["version"] == latest[k]["version"]: latest[k]["formats"][r["format"]] = r["file"]; latest[k]["ts"] = r["ts"]
+    rows = ["# Resumes by role", "", "| Job | Company | Role | Version | Files | Made |", "|---|---|---|---|---|---|"]
+    for k, v in sorted(latest.items()):
+        j = jobs.get(k) or {}
+        folder = safe_name(f"{j.get('company', '?')} - {j.get('title', '?')}")
+        files = ", ".join(f"[{f.upper()}](<{folder}/{pathlib.Path(p).name}>)" for f, p in sorted(v["formats"].items()))
+        rows.append(f"| {k} | {j.get('company', '?')} | {j.get('title', '?')} | v{v['version']} | {files} | {v['ts'][:10]} |")
+    RESUMES.mkdir(parents=True, exist_ok=True)
+    (RESUMES / "index.md").write_text("\n".join(rows) + "\n", encoding="utf-8", newline="\n")
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))

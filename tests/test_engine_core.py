@@ -238,8 +238,22 @@ class Tracking(Base):
     def test_add_dedupes_by_url_and_key(self):
         self.assertIn("j-0001", self.add())
         self.assertIn("already j-0001", self.add())
-        self.assertIn("already j-0001", self.add(url="https://jobs.example.com/acme/other"))
-        self.assertIn("j-0002", self.add(title="Senior Backend Engineer", url="https://jobs.example.com/acme/2"))
+        self.assertIn("already j-0001", self.add(url="https://jobs.example.com/acme/other", source={"tier": 3, "via": "pasted"}))   # pasted again by hand
+        self.assertIn("j-0002", self.add(url="https://jobs.example.com/acme/other"))   # swept under a new link: a repost
+        j2 = next(j for j in self.sb.json("data/jobs.json")["jobs"] if j["id"] == "j-0002")
+        self.assertEqual((j2["status"], j2["repost_of"]), ("repost", "j-0001"))
+        self.assertIn("already j-0002", self.add(url="https://jobs.example.com/acme/other"))   # the same repost again: known
+        self.assertIn("j-0003", self.add(title="Senior Backend Engineer", url="https://jobs.example.com/acme/2"))
+        self.sb.ok(self, "validate.py")
+
+    def test_repost_of_a_long_dismissed_job_comes_back(self):
+        self.add()
+        self.sb.ok(self, "jobs.py", "status", "j-0001", "dismissed", "--note", "not now")
+        self.sb.write("data/tmp/j.json", {"company": "Acme Cloud", "title": "Backend Engineer", "url": "https://jobs.example.com/acme/again",
+                                          "location": "Noida", "source": {"tier": 1, "via": "greenhouse"}})
+        self.sb.ok(self, "jobs.py", "add", "@data/tmp/j.json", now="2027-01-10T10:00:00")
+        j2 = next(j for j in self.sb.json("data/jobs.json")["jobs"] if j["id"] == "j-0002")
+        self.assertEqual(j2["status"], "new"); self.assertIn("a repost of j-0001", j2["history"][0]["note"])
 
     def test_jd_copy_masks_phones_and_needs_full_text(self):
         self.add()

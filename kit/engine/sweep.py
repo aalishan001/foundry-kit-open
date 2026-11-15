@@ -24,18 +24,22 @@ def targets(rad, args):
     due = lambda c: radar.due_date(c) <= today()
     return [c for c in rad["companies"] if "--all" in args or due(c)]
 
-def sweep_company(c, rules, known, max_jd, dry):
-    rep = {"company": c["company"], "found": 0, "known": 0, "dropped": [], "added": [], "error": None}
+def sweep_company(c, rules, known, max_jd, dry, boards=None):
+    rep = {"company": c["company"], "found": 0, "known": 0, "dropped": [], "added": [], "reposts": [], "error": None}
     try: posts = sources.openings(c)
     except sources.Unreadable as e:
         rep["error"] = f"unreadable: {e}"; return rep, {"tier": 3, "probe": False}
     except FetchError as e:
         rep["error"] = str(e); return rep, None
     rep["found"] = len(posts)
-    keep = []
+    if boards is not None: boards[c["company"]] = posts   # the whole read, for the board watch
+    keep, reposts = [], []
     for p in posts:
         if not p["title"]: continue
-        if jobs.existing(known, p): rep["known"] += 1; continue
+        hit = jobs.existing(known, p)
+        if hit and p.get("url") and hit.get("url") and p["url"] != hit["url"]:   # same title and place, new posting: a repost
+            reposts.append(p); continue
+        if hit: rep["known"] += 1; continue
         ok, why = fit.prefilter(p, rules, company=c)
         if ok: keep.append(p)
         else: rep["dropped"].append({"title": p["title"], "location": p["location"], "url": p["url"], "why": why})
@@ -48,9 +52,13 @@ def sweep_company(c, rules, known, max_jd, dry):
         if jd and len(jd.strip()) >= 200: texts[len(items)] = jd
         items.append({"company": p["company"], "title": p["title"], "url": p["url"], "location": p["location"], "remote": p["remote"],
                       "posted": p["posted"], "source": {"tier": 1, "via": c["portal"]["type"], "ref": p.get("ref")}})
+    items += [{"company": p["company"], "title": p["title"], "url": p["url"], "location": p["location"], "remote": p["remote"],
+               "posted": p["posted"], "source": {"tier": 1, "via": c["portal"]["type"], "ref": p.get("ref")}} for p in reposts]
     added, _ = jobs.add_jobs(items, texts, dry)
     known += added
-    rep["added"] = [j["id"] for j in added] if not dry else [f"(dry) {j['title']}" for j in added]
+    fresh = [j for j in added if j["status"] != "repost"]
+    rep["added"] = [j["id"] for j in fresh] if not dry else [f"(dry) {j['title']}" for j in fresh]
+    rep["reposts"] = [{"id": j.get("id"), "repost_of": j["repost_of"], "title": j["title"]} for j in added if j["status"] == "repost"]
     return rep, ({"probe": False} if c["portal"].get("probe") else None)
 
 def run(args):
@@ -59,15 +67,18 @@ def run(args):
     dry, max_jd = "--dry-run" in args, int(opt(args, "--max-jd", "10"))
     known = jobs.load_jobs()["jobs"]
     report = {"ts": stamp(), "companies": [], "reminders": []}
+    boards = {}
     for c in targets(rad, args):
         if c["portal"]["tier"] != 1:
             report["reminders"].append({"company": c["company"], "url": c["careers_url"], "how": c.get("how", "")}); continue
-        rep, portal_update = sweep_company(c, rules, known, max_jd, dry)
+        rep, portal_update = sweep_company(c, rules, known, max_jd, dry, boards)
         report["companies"].append(rep)
         if not dry:
             note = rep["error"] or f"{rep['found']} openings, {len(rep['added'])} new"
             radar.record_check(rad, c, rep["found"], len(rep["added"]), note, portal_update=portal_update)
     if not dry:
+        import board_watch
+        report["gone"] = board_watch.update(boards)
         save(radar.RADAR, rad)
         p = unique_path(SWEEPS, ts_name(), "json"); save(p, report)
     show(report, None if dry else rel(p))
@@ -91,8 +102,12 @@ def show(report, path):
         for r in report["reminders"]: print(f"  {r['company']:<30} {r['url']}")
     unread = [r["company"] for r in report["companies"] if (r["error"] or "").startswith("unreadable")]
     if unread: print("\nSwitched to paste-in (the page needs a browser): " + ", ".join(unread))
+    rp = [x for r in report["companies"] for x in r.get("reposts", [])]
+    if rp: print(chr(10) + "Reposts (shown once, not ranked again): " + "; ".join(f"{x['title']} = repost of {x['repost_of']}" for x in rp))
     dropped = sum(len(r["dropped"]) for r in report["companies"])
     if dropped: print(f"\nDropped {dropped} by the rules (level, country, role family): sweep.py dropped")
+    import board_watch
+    for f in report.get("gone") or []: print(("\nNo longer on its board: " if f["new"] else "  still gone: ") + board_watch.line(f))
     if path: print(f"\nSaved {path}")
 
 def import_alerts(path, rules=None, dry=False):

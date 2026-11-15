@@ -48,7 +48,16 @@ For anyone helping a friend through their first session, screen-shared. Everythi
   to a fact they confirmed.
 - `/prep` on it: a primer per gap, with likely questions and honest answers from their facts.
 
-## 6. Day to day
+## 6. Referrals (5 minutes)
+
+- `/refer add Priya at Acme, my old teammate` saves a contact. A LinkedIn profile link can go with it as text; the kit
+  never opens it.
+- `/refer ask Priya for j-0004` writes the message (under 85 words, with an easy out, and only true lines about them).
+  **They copy it into LinkedIn or email and send it themselves**, then say "sent".
+- Then they say what happened: "Priya said yes", "she referred me", "no reply". The kit suggests one nudge after 5
+  days, and at most 20 asks a day.
+
+## 7. Day to day
 
 - The sweep runs by itself every morning. `/sweep` to see what it found, `/today` for the next three actions.
 - `/applied` after sending an application, `/update` when anything happens, `/grill` and `/prep` before an interview.

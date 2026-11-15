@@ -3,7 +3,7 @@ import json, pathlib, re, unittest
 from sandbox import KIT
 
 COMMANDS = {"start": "sonnet", "radar": "sonnet", "sweep": "haiku", "check": "sonnet", "tailor": "opus", "applied": "sonnet",
-            "update": "haiku", "grill": "sonnet", "prep": "sonnet", "today": "haiku", "help": "haiku"}
+            "update": "haiku", "grill": "sonnet", "prep": "sonnet", "refer": "sonnet", "today": "haiku", "help": "haiku"}
 
 def frontmatter(p):
     m = re.match(r"^---\n(.*?)\n---\n", p.read_text(encoding="utf-8"), re.S)

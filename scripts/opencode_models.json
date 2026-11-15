@@ -6,11 +6,22 @@
   "strong": "openrouter/anthropic/claude-sonnet-5.5"
  },
  "commands": {
-  "help": "light", "sweep": "light", "today": "light", "update": "light",
-  "radar": "standard", "check": "standard", "applied": "standard", "start": "standard", "grill": "standard",
-  "tailor": "strong", "prep": "strong"
+  "help": "light",
+  "sweep": "light",
+  "today": "light",
+  "update": "light",
+  "radar": "standard",
+  "check": "standard",
+  "applied": "standard",
+  "start": "standard",
+  "grill": "standard",
+  "tailor": "strong",
+  "prep": "strong",
+  "refer": "standard"
  },
- "agents": {"claim-checker": "standard"},
+ "agents": {
+  "claim-checker": "standard"
+ },
  "default": "standard",
  "background": "light"
 }

@@ -51,9 +51,13 @@
    "india_office": true,
    "careers_url": "https://apply.careers.microsoft.com/careers?location=India",
    "portal": {
-    "type": "other",
-    "tier": 3,
-    "how": "Eightfold-based Microsoft careers portal; JS app, no public job API."
+    "type": "eightfold",
+    "tier": 1,
+    "host": "apply.careers.microsoft.com",
+    "domain": "microsoft.com",
+    "location": "India",
+    "max_pages": 25,
+    "how": "Eightfold careers API (robots.txt allows /api/pcsx): India, 10 a page, slow on bursts; undocumented, may change without notice."
    },
    "families": [
     "backend",
@@ -68,9 +72,9 @@
     "qa-sdet"
    ],
    "verified": {
-    "date": "2026-11-03",
-    "result": "tier3",
-    "detail": "Careers page loads (HTTP 200); listings not machine-readable"
+    "date": "2026-11-15",
+    "result": "ok",
+    "detail": "/api/pcsx/search: 208 India roles"
    },
    "stability": {
     "type": "listed",
@@ -93,9 +97,14 @@
    "india_office": true,
    "careers_url": "https://www.amazon.jobs/en/search?country=IND",
    "portal": {
-    "type": "other",
-    "tier": 3,
-    "how": "amazon.jobs custom portal; search results load client-side."
+    "type": "amazon",
+    "tier": 1,
+    "loc_query": "India",
+    "country": "IND",
+    "categories": [
+     "software-development"
+    ],
+    "how": "amazon.jobs public search JSON (robots.txt allows it): India, software development; undocumented, may change without notice."
    },
    "families": [
     "backend",
@@ -110,9 +119,9 @@
     "qa-sdet"
    ],
    "verified": {
-    "date": "2026-11-03",
-    "result": "tier3",
-    "detail": "Careers page loads (HTTP 200); listings not machine-readable"
+    "date": "2026-11-15",
+    "result": "ok",
+    "detail": "search.json: 363 software-development roles in India"
    },
    "stability": {
     "type": "listed",

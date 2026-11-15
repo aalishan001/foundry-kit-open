@@ -10,9 +10,11 @@ done here. Statuses change only on their word, with one rule they set: a job bec
   jobs.py status <j-id> <new|shortlisted|dismissed|closed> [--note T] [--date D]
   jobs.py triage <j-id> <high|medium|low> "<one line>"   the /sweep rating of a new job (once ranked, it stops waiting)
   jobs.py waiting                           new jobs not yet ranked by /sweep, oldest first
-  jobs.py list [--status S[,S]] [--all]     new and shortlisted by default
+  jobs.py list [--status S[,S]] [--all] [--by fit] [--company C]   new and shortlisted by default; --by fit lists them
+                                            in apply order (match, then likeliness)
   jobs.py show <j-id|a-id>
   jobs.py applied <payload> (--resume <inbox file> | --tailored <j-id>/v<N>) [--jd-file <file>] [--dry-run]
+        --backfill: an application sent before setup (no JD copy or resume needed; marked as backfilled)
         {job?, company?, role?, link?, date, channel, referrer?, notes?}; channel: careers_site | referral |
         recruiter | email | job_board | other. The resume sent is stored once by hash (data/resumes/<sha256>.<ext>)
   jobs.py app <a-id> <status> [--round R] [--note T] [--date D] [--next YYYY-MM-DD]
@@ -22,12 +24,13 @@ done here. Statuses change only on their word, with one rule they set: a job bec
 """
 import hashlib, json, pathlib, shutil, sys
 from _common import (HOME, DATA, INBOX, HTTPS, PHONE, load, save, read_jsonl, payload, opt, die, today, stamp,
-                     ts_name, date_arg, next_id, days_since, rel, read_text, norm, slug, unique_path)
+                     ts_name, date_arg, next_id, days_since, rel, read_text, norm, slug, unique_path, search_rules)
 from validate import JOB_STATUSES, APP_STATUSES, APP_CLOSED, CHANNELS, jobs_errors
 
 JOBS, APPS = DATA / "jobs.json", DATA / "apps.json"
 JDS, CHECKS, RESUMES, RES_INDEX, RENDERS = DATA / "jds", DATA / "checks", DATA / "resumes", DATA / "resumes" / "index.json", DATA / "renders.jsonl"
-MANUAL = {"new", "shortlisted", "dismissed", "closed"}
+MANUAL = {"new", "shortlisted", "dismissed", "closed", "parked"}
+REPOST_REVIVE_DAYS = 60
 
 def load_jobs(): return load(JOBS, {"jobs": []})
 def load_apps(): return load(APPS, {"apps": []})
@@ -71,7 +74,8 @@ def new_job(rows, d):
 
 def existing(rows, d):
     key = dedupe_key(d.get("company"), d.get("title"), d.get("location"))
-    return next((r for r in rows if (d.get("url") and r.get("url") == d["url"]) or r.get("dedupe_key") == key), None)
+    by_url = next((r for r in rows if d.get("url") and r.get("url") == d["url"]), None)   # an exact link wins over a key match
+    return by_url or next((r for r in rows if r.get("dedupe_key") == key), None)
 
 def add_jobs(items, jd_texts=None, dry=False):
     """-> (added jobs, [(item, existing id)]). jd_texts: {index: text} saved with each new job."""
@@ -79,8 +83,20 @@ def add_jobs(items, jd_texts=None, dry=False):
     added, dupes = [], []
     for i, d in enumerate(items):
         hit = existing(rows + added, d)
-        if hit: dupes.append((d, hit["id"])); continue
+        repost = None
+        swept = (d.get("source") or {}).get("tier") in (1, 2)   # a job pasted again by hand is reported as known, not as a repost
+        if swept and hit and d.get("url") and hit.get("url") and d["url"] != hit["url"] and hit.get("dedupe_key") == dedupe_key(d.get("company"), d.get("title"), d.get("location")):
+            repost = hit   # same company, title and place under a new posting: a repost of a known job
+        elif hit: dupes.append((d, hit["id"])); continue
         j = new_job(rows + added, d)
+        if repost:
+            old = repost.get("repost_of") and find(rows + added, repost["repost_of"]) or repost
+            stale = old["status"] == "dismissed" and days_since(old["history"][-1]["date"]) > REPOST_REVIVE_DAYS
+            if not stale:
+                j.update(status="repost", repost_of=old["id"])
+                j["history"] = [{"date": today().isoformat(), "status": "repost", "note": f"repost of {old['id']} (same title and place, new posting)"}]
+            else: j["history"][0]["note"] += f"; a repost of {old['id']}, dismissed over {REPOST_REVIVE_DAYS} days ago"
+            j["dedupe_key"] = dedupe_key(d["company"], d["title"], d.get("location")) + f"|{j['id']}"
         if jd_texts and jd_texts.get(i) and not dry: jd_copy(j, jd_texts[i], j["source"]["via"] or "fetched")
         added.append(j)
     if not dry and added:
@@ -122,7 +138,9 @@ def cmd_check(raw):
     p = unique_path(CHECKS, name, "json")
     save(p, {"ts": stamp(), "jobs": rows})
     for r in rows:
-        j = find(data["jobs"], r["id"]); j["fit"] = r["fit"]; j["check"] = rel(p)
+        j = find(data["jobs"], r["id"])
+        if j.get("fit"): j.setdefault("fit_history", []).append({"date": today().isoformat(), "check": j.get("check"), "fit": j["fit"]})   # a re-check keeps the old fit
+        j["fit"] = r["fit"]; j["check"] = rel(p)
     save(JOBS, data)
     for r in sorted(rows, key=lambda r: (-r["fit"]["match"], -r["fit"]["likeliness"])):
         j = find(data["jobs"], r["id"])
@@ -136,8 +154,14 @@ def cmd_status(jid, status, args):
     if j["status"] == status: die(f"{jid} is already {status}")
     when = date_arg(args)
     if when < j["history"][-1]["date"]: die(f"{when} is before the last change ({j['history'][-1]['date']})")
+    note = (opt(args, "--note") or "").strip()
+    if status == "shortlisted":
+        cap = (search_rules().get("rules") or {}).get("company_app_cap")
+        open_n = sum(1 for a in load_apps()["apps"] if a["company"].lower() == j["company"].lower() and a["status"] not in APP_CLOSED)
+        if cap is not None and open_n >= cap:
+            status, note = "parked", f"{j['company']} already has {open_n} open application(s), their cap is {cap}: parked, still swept" + (f"; {note}" if note else "")
     j["status"] = status
-    j["history"].append({"date": when, "status": status, "note": (opt(args, "--note") or "").strip()})
+    j["history"].append({"date": when, "status": status, "note": note})
     save(JOBS, data)
     print(f"{jid}  {j['company']} · {j['title']}: {status}")
     return 0
@@ -145,6 +169,13 @@ def cmd_status(jid, status, args):
 def cmd_list(args):
     want = set((opt(args, "--status") or "").split(",")) - {""}
     rows = [j for j in load_jobs()["jobs"] if (j["status"] in want if want else ("--all" in args or j["status"] in ("new", "shortlisted")))]
+    if opt(args, "--company"): rows = [j for j in rows if j["company"].lower() == opt(args, "--company").lower()]
+    if opt(args, "--by") == "fit":   # apply order: the best fits first, unchecked last
+        rows = sorted(rows, key=lambda j: (-((j.get("fit") or {}).get("match") or -1), -((j.get("fit") or {}).get("likeliness") or -1), j["id"]))
+        for n, j in enumerate(rows, 1):
+            fit = j.get("fit") or {}
+            print(f"{n:>2}. {j['id']}  {j['status']:<11} {j['company']} · {j['title']}  " + (f"match {fit['match']}, likeliness {fit['likeliness']}" if fit else "not checked yet"))
+        return 0
     if not rows: print("No jobs" + (" with that status." if want else " waiting.")); return 0
     order = {s: i for i, s in enumerate(JOB_STATUSES)}
     for j in sorted(rows, key=lambda j: (order[j["status"]], -((j.get("fit") or {}).get("match") or -1), j["id"])):
@@ -219,21 +250,23 @@ def cmd_applied(raw, args):
     if d["channel"] not in CHANNELS: die(f"channel must be one of {CHANNELS}")
     if d.get("referrer") and d["channel"] != "referral": die("a referrer goes with channel referral")
     jd_file = opt(args, "--jd-file")
-    if not ((job and job.get("jd")) or jd_file): die("a JD copy is required: --jd-file <file with the posting's text>, or apply to a job with a saved JD")
+    backfill = "--backfill" in args
+    if not backfill and not ((job and job.get("jd")) or jd_file): die("a JD copy is required: --jd-file <file with the posting's text>, or apply to a job with a saved JD")
     if opt(args, "--tailored"):
         src, render = tailored_file(opt(args, "--tailored")); move = False
     elif opt(args, "--resume"):
         src, render = pathlib.Path(opt(args, "--resume")), None
         move = src.resolve().parent == INBOX.resolve()
+    elif backfill: src = render = None; move = False
     else: die("say which resume was sent: --tailored <job-id>/v<N> or --resume <file in inbox>")
     apps = load_apps()
     aid = next_id(apps["apps"], "a")
-    h, note = store_resume(src, render, move, dry)
+    h, note = store_resume(src, render, move, dry) if src else (None, "backfilled: sent before setup, resume not on file")
     app = {"id": aid, "job": job["id"] if job else None, "company": d["company"].strip(), "role": d["role"].strip(),
            "link": d.get("link"), "applied": date, "channel": d["channel"], "referrer": (d.get("referrer") or "").strip() or None,
            "notes": (d.get("notes") or "").strip(), "resume": h, "tailored": opt(args, "--tailored"), "status": "applied",
            "round": None, "next": None, "history": [{"date": date, "status": "applied", "round": None, "note": "logged", "source": "user"}],
-           "created": stamp(), "source": "user"}
+           "created": stamp(), "source": "user", **({"backfill": True} if backfill else {})}
     if dry:
         print(json.dumps(app, indent=1, ensure_ascii=False)); print(f"resume: {note}"); return 0
     if job:

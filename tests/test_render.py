@@ -25,7 +25,10 @@ class Tailor(unittest.TestCase):
 
     def test_supported_resume_passes_and_renders_both(self):
         self.assertIn("lines trace to confirmed facts", self.sb.ok(self, "claims.py", "j-0001/v1"))
+        self.sb.fails(self, "render.py", "j-0001/v1", contains="ats.py check")
+        self.assertIn("tailoring checks: OK", self.sb.ok(self, "ats.py", "check", "j-0001/v1"))
         out = self.sb.ok(self, "render.py", "j-0001/v1")
+        self.assertIn("Riya_Testwal_Resume.pdf", (self.sb.home / "Resumes" / "index.md").read_text(encoding="utf-8"))
         self.assertIn("PDF: Resumes/Acme Cloud - Senior Backend Engineer/Riya_Testwal_Resume.pdf", out)
         self.assertIn("DOCX:", out); self.assertEqual(out.count("same words, same order"), 2)
         checks = self.sb.json(f"{self.v}/checks.json")
@@ -73,12 +76,25 @@ class Tailor(unittest.TestCase):
         self.assertIn("numbers not in the cited facts: 60", self.sb.fails(self, "claims.py", "j-0001/v1"))
 
     def test_pdf_only_and_applied_with_tailored_version(self):
-        self.sb.ok(self, "claims.py", "j-0001/v1")
+        self.sb.ok(self, "claims.py", "j-0001/v1"); self.sb.ok(self, "ats.py", "check", "j-0001/v1")
         self.sb.ok(self, "render.py", "j-0001/v1", "--format", "pdf")
         self.sb.write("data/tmp/a.json", {"job": "j-0001", "date": "2026-10-25", "channel": "careers_site"})
         out = self.sb.ok(self, "jobs.py", "applied", "@data/tmp/a.json", "--tailored", "j-0001/v1")
         self.assertIn("(render j-0001 v1)", out)
         self.sb.ok(self, "validate.py")
+
+    def test_tailoring_checks_catch_spelling_headline_wording_and_duplicates(self):
+        import copy
+        r = copy.deepcopy(P.RESUME)
+        r["sections"][0]["paragraphs"][0]["text"] = "Senior Backend Engineer who leveraged Go — and more — to cut latency."
+        r["sections"][1]["roles"][1]["bullets"][0]["text"] = "Migrated 18 services from VMs onto K8s."
+        r["sections"][1]["roles"][0]["bullets"].append({"text": "Cut checkout latency again.", "facts": ["f-0001"]})
+        r["sections"][2]["lines"][0]["items"].append("go")
+        self.put(r)
+        out = self.sb.fails(self, "ats.py", "check", "j-0001/v1")
+        for msg in ("use the JD's spelling 'Kubernetes'", "a title they never held", "stock wording 'leveraged'", "em dashes",
+                    "one bullet per fact", "listed twice: go"):
+            self.assertIn(msg, out)
 
     def test_ats_keywords_and_docx_lint(self):
         self.sb.ok(self, "claims.py", "j-0001/v1")

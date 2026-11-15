@@ -55,7 +55,9 @@ def detect(url):
         return {"type": "workday", "tier": 1, "host": host, "tenant": m.group(1), "site": site[0]}
     if "successfactors" in host or host.endswith("sapsf.com") or host.endswith("sapsf.eu"): return {"type": "successfactors", "tier": 3}
     if host.endswith("taleo.net"): return {"type": "taleo", "tier": 3}
-    if host.endswith("oraclecloud.com"): return {"type": "oracle", "tier": 3}
+    if host.endswith("oraclecloud.com"):   # a Candidate Experience link names its site number, so it reads like an ATS
+        site = parts[parts.index("sites") + 1] if "sites" in parts and parts.index("sites") + 1 < len(parts) else None
+        return {"type": "oraclehcm", "tier": 1, "host": host, "site": site} if site else {"type": "oracle", "tier": 3}
     if "darwinbox" in host: return {"type": "darwinbox", "tier": 3}
     if "zohorecruit" in host: return {"type": "zoho", "tier": 3}
     if host.endswith("icims.com"): return {"type": "icims", "tier": 3}

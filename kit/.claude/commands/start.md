@@ -54,6 +54,10 @@ at the first open stage (or the stage named in `$ARGUMENTS`). Ask one thing at a
    - Their current title and pay: `profile_cli.py current "<title>" --ctc <LPA> [--fixed <LPA>] [--variable <pct>]`.
      If the title isn't on the ladder, ask which level it equals and set `current.ladder_rank`.
    - Lower roles are never suggested. State this; it's a fixed rule, not a question.
+   - How far up to look: "No limit on how senior, or drop roles more than N levels above yours?" (`rules.max_steps_up`,
+     no limit by default).
+   - Cities at home: "Any city in your country, or only certain ones (plus remote)?" Only on their explicit word, set
+     `locations.home_cities_only`; say it's the one location rule that filters.
    - The lateral-move threshold: "A same-level move only if the pay rise is at least 20%. Keep 20%, or another
      number?" Then ask whether that's on total CTC or fixed pay.
    - Target families. Show the pack's families (`packs/<pack>/roles.json`) with the defaults ticked and the others
@@ -69,6 +73,11 @@ at the first open stage (or the stage named in `$ARGUMENTS`). Ask one thing at a
      - pay or place: if pay matters more than where, set `locations.pay_over_place: true`;
      - remote yes or no, relocation yes or no.
    - Notice period in days (`notice_period_days`) and any deal-breakers.
+   - Per-company limit: "Some people apply to at most N roles at one company at a time. Want a limit?" Only if they
+     give one, save `rules.company_app_cap`; extra roles are then parked, still swept. No limit by default.
+   - Applications they already sent before today: log each with `/applied ... --backfill` (no JD or resume needed).
+   - Referrals: "I'll suggest at most 20 referral asks a day and one nudge after 5 days. Keep those?" Save as
+     `referrals: {daily_cap, nudge_days}` in search.json.
 
    Save with `profile_cli.py set search @data/tmp/s.json`. Then `intake done search`.
 

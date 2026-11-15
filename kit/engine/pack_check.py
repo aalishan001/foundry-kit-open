@@ -7,7 +7,7 @@ import re, sys
 from _common import HTTPS, load, read_jsonl, pack_dir, pack_id
 from validate import STABILITY
 
-PORTALS = {"greenhouse", "lever", "smartrecruiters", "ashby", "workday", "static", "successfactors", "taleo", "oracle",
+PORTALS = {"greenhouse", "lever", "smartrecruiters", "ashby", "workday", "oraclehcm", "amazon", "eightfold", "static", "successfactors", "taleo", "oracle",
            "darwinbox", "zoho", "icims", "other"}
 SEGMENTS = {"ipp", "oem", "om-contractor", "epc", "ci", "software", "consultancy"}   # when pack.json lists none
 TOPICS = {"technical", "system-design", "coding", "safety", "commercial", "people", "behavioral"}
@@ -71,10 +71,12 @@ def check(pid):
         if not HTTPS.match(str(c.get("careers_url", ""))): e.append(f"{w}: careers_url must be https")
         p = c.get("portal") or {}
         if p.get("type") not in PORTALS: e.append(f"{w}: portal.type {p.get('type')!r} is not known")
-        tier = 1 if p.get("type") in ("greenhouse", "lever", "smartrecruiters", "ashby", "workday") else p.get("tier")
+        tier = 1 if p.get("type") in ("greenhouse", "lever", "smartrecruiters", "ashby", "workday", "oraclehcm", "amazon", "eightfold") else p.get("tier")
         if p.get("tier") != tier or tier not in (1, 3): e.append(f"{w}: portal.tier is wrong for {p.get('type')}")
         if p.get("type") in ("greenhouse", "lever", "smartrecruiters", "ashby") and not p.get("token"): e.append(f"{w}: {p['type']} needs a token")
         if p.get("type") == "workday" and not all(p.get(k) for k in ("host", "tenant", "site")): e.append(f"{w}: workday needs host, tenant and site")
+        if p.get("type") == "oraclehcm" and not all(p.get(k) for k in ("host", "site")): e.append(f"{w}: oraclehcm needs host and site")
+        if p.get("type") == "eightfold" and not all(p.get(k) for k in ("host", "domain")): e.append(f"{w}: eightfold needs host and domain")
         for fam in c.get("families", []):
             if fam not in ids: e.append(f"{w}: family {fam!r} is not in roles.json")
         st = c.get("stability")

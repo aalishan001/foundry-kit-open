@@ -52,6 +52,11 @@ def main(a):
         print(f"  {a_['id']}  {a_['status']:<12} {n} d  {a_['company']} · {a_['role']}  (suggest: {hint})")
     if v["intake_open"] or v["open_questions"]:
         print(f"\nProfile: {len(v['open_questions'])} open question(s)" + (f"; /start stages left: {', '.join(v['intake_open'])}" if v["intake_open"] else ""))
+    import board_watch
+    gone = board_watch.current()
+    if gone:
+        print(f"\nNo longer on their boards ({len(gone)}): confirm with /update if closed")
+        for f in gone: print("  " + board_watch.line(f))
     print("\nNothing was changed.")
     return 0
 

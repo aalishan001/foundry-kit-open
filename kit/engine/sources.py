@@ -82,6 +82,98 @@ def ashby(c):
                            ref=j.get("id")))
     return out
 
+# ---------------------------------------------------------------- Oracle HCM Candidate Experience (public REST, no login)
+# portal: {type: oraclehcm, host, site, location_id?, search?, max_pages?}
+ORACLE_PAGE, ORACLE_MAX_PAGES = 200, 3
+
+def oraclehcm(c):
+    from urllib.parse import quote
+    p = c["portal"]; host, site = p["host"], p["site"]
+    extra = (f",locationId={p['location_id']}" if p.get("location_id") else "") + (f",keyword=%22{quote(p['search'])}%22" if p.get("search") else "")
+    out = []
+    for page in range(p.get("max_pages", ORACLE_MAX_PAGES)):
+        d = get(f"https://{host}/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList"
+                f"&finder=findReqs;siteNumber={site}{extra},limit={ORACLE_PAGE},offset={page * ORACLE_PAGE},sortBy=POSTING_DATES_DESC", as_json=True)
+        it = (d.get("items") or [{}])[0]
+        rows = it.get("requisitionList") or []
+        for j in rows:
+            out.append(posting(c, title=j.get("Title", ""), location=j.get("PrimaryLocation", ""), posted=_date(j.get("PostedDate")),
+                               url=f"https://{host}/hcmUI/CandidateExperience/en/sites/{site}/job/{j.get('Id')}", ref=str(j.get("Id")),
+                               remote="remote" in (j.get("WorkplaceType") or "").lower()))
+        if len(rows) < ORACLE_PAGE or (page + 1) * ORACLE_PAGE >= (it.get("TotalJobsCount") or 0): break
+    return out
+
+def oraclehcm_jd(c, p):
+    pt = c["portal"]
+    d = get(f"https://{pt['host']}/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails?expand=all&onlyData=true"
+            f"&finder=ById;Id=%22{p['ref']}%22,siteNumber={pt['site']}", as_json=True)
+    it = (d.get("items") or [{}])[0]
+    parts = [it.get(k) for k in ("ExternalDescriptionStr", "ExternalResponsibilitiesStr", "ExternalQualificationsStr", "CorporateDescriptionStr")]
+    return "\n\n".join(to_text(unescape(x)) for x in parts if x).strip() or None
+
+# ---------------------------------------------------------------- company job APIs (a company's own careers site JSON)
+# Undocumented public endpoints: each is read with robots.txt checked, and may change without notice. A failure turns
+# the company to paste-in for that sweep, like an unreadable static page.
+
+# amazon.jobs search.json. portal: {type: amazon, loc_query, country, city?, categories?: [...], search?, max_pages?}
+AMAZON_PAGE, AMAZON_MAX_PAGES = 100, 5
+
+def amazon(c):
+    from urllib.parse import urlencode
+    p, out = c["portal"], []
+    for page in range(p.get("max_pages", AMAZON_MAX_PAGES)):
+        q = [("base_query", p.get("search", "")), ("loc_query", p.get("loc_query", "")), ("country", p.get("country", "")),
+             ("city", p.get("city", "")), ("sort", "recent"), ("result_limit", AMAZON_PAGE), ("offset", page * AMAZON_PAGE)]
+        q += [("category[]", x) for x in p.get("categories", [])]
+        try: d = get("https://www.amazon.jobs/en/search.json?" + urlencode(q), as_json=True, robots=True)
+        except FetchError as e: raise Unreadable(f"the amazon.jobs API didn't answer ({e})")
+        rows = d.get("jobs") or []
+        for j in rows:
+            try: posted = dt.datetime.strptime(re.sub(r"\s+", " ", j.get("posted_date", "")), "%B %d, %Y").date().isoformat()
+            except ValueError: posted = None
+            text = "\n\n".join(f"{h}\n{to_text(j.get(k) or '')}" for h, k in (("Description", "description"),
+                     ("Basic qualifications", "basic_qualifications"), ("Preferred qualifications", "preferred_qualifications")) if j.get(k))
+            out.append(posting(c, title=j.get("title", ""), location=j.get("normalized_location") or j.get("location", ""),
+                               url="https://www.amazon.jobs" + (j.get("job_path") or ""), posted=posted, ref=j.get("id_icims"), jd_text=text or None))
+        if len(rows) < AMAZON_PAGE or (page + 1) * AMAZON_PAGE >= (d.get("hits") or 0): break
+    return out
+
+# Eightfold PCS careers sites (/api/pcsx). portal: {type: eightfold, host, domain, search?, location?, max_pages?}
+EIGHTFOLD_MAX_PAGES, EIGHTFOLD_BACKOFF = 10, 40
+
+def _eightfold_get(url, tries=3):
+    """Eightfold answers 429 to quick bursts: back off and try again."""
+    import time
+    for i in range(tries):
+        try: return get(url, as_json=True, robots=True)
+        except FetchError as e:
+            if "429" not in str(e) or i == tries - 1: raise
+            time.sleep(EIGHTFOLD_BACKOFF)
+
+def eightfold(c):
+    from urllib.parse import urlencode
+    p, out, start = c["portal"], [], 0
+    for _ in range(p.get("max_pages", EIGHTFOLD_MAX_PAGES)):
+        q = urlencode({"domain": p["domain"], "query": p.get("search", ""), "location": p.get("location", ""), "start": start, "sort_by": "timestamp"})
+        try: d = (_eightfold_get(f"https://{p['host']}/api/pcsx/search?{q}") or {}).get("data") or {}
+        except FetchError as e:
+            if out: break
+            raise Unreadable(f"the careers API didn't answer ({e})")
+        rows = d.get("positions") or []
+        for j in rows:
+            ts = j.get("postedTs")
+            out.append(posting(c, title=j.get("name", ""), location="; ".join(j.get("locations") or []), ref=str(j.get("id")),
+                               url=f"https://{p['host']}/careers/job/{j.get('id')}", remote=(j.get("workLocationOption") or "") == "remote",
+                               posted=dt.datetime.fromtimestamp(ts, dt.timezone.utc).date().isoformat() if ts else None))
+        start += len(rows)
+        if not rows or start >= (d.get("count") or 10**9): break
+    return out
+
+def eightfold_jd(c, p):
+    pt = c["portal"]
+    d = (_eightfold_get(f"https://{pt['host']}/api/pcsx/position_details?position_id={p['ref']}&domain={pt['domain']}&hl=en") or {}).get("data") or {}
+    return to_text(unescape(d.get("jobDescription") or "")) or None
+
 # ---------------------------------------------------------------- Workday (public jobs endpoint, no login)
 def _workday_posted(text):
     t = (text or "").lower()
@@ -94,7 +186,7 @@ def workday(c):
     p = c["portal"]; host, tenant, site = p["host"], p["tenant"], p["site"]
     api = f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
     out = []
-    for page in range(WORKDAY_MAX_PAGES):
+    for page in range(p.get("max_pages", WORKDAY_MAX_PAGES)):   # a location facet reads the whole board, not a keyword's top 100
         body = {"appliedFacets": p.get("facets") or {}, "limit": WORKDAY_PAGE, "offset": page * WORKDAY_PAGE, "searchText": p.get("search", "")}
         d = get(api, method="POST", body=body, as_json=True)
         rows = d.get("jobPostings") or []
@@ -236,8 +328,9 @@ def static_jd(c, p):
     from fetch import page_text
     return page_text(p["url"]) if p.get("url") else None
 
-ADAPTERS = {"greenhouse": greenhouse, "lever": lever, "smartrecruiters": smartrecruiters, "ashby": ashby, "workday": workday, "static": static}
-JD = {"smartrecruiters": smartrecruiters_jd, "workday": workday_jd, "static": static_jd}
+ADAPTERS = {"greenhouse": greenhouse, "lever": lever, "smartrecruiters": smartrecruiters, "ashby": ashby, "workday": workday, "static": static,
+            "oraclehcm": oraclehcm, "amazon": amazon, "eightfold": eightfold}
+JD = {"smartrecruiters": smartrecruiters_jd, "workday": workday_jd, "static": static_jd, "oraclehcm": oraclehcm_jd, "eightfold": eightfold_jd}
 
 def openings(c):
     t = c["portal"]["type"]

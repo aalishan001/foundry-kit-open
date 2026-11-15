@@ -36,18 +36,21 @@ def take_lock():
 def tier1(rep, rules, dry):
     import radar, sweep, jobs
     rad = radar.load_radar()
-    known = jobs.load_jobs()["jobs"]
+    known, boards = jobs.load_jobs()["jobs"], {}
     for c in rad["companies"]:
         if c["portal"].get("tier") != 1:
             if radar.due_date(c) <= today(): rep["reminders"].append({"company": c["company"], "url": c["careers_url"], "how": c.get("how", ""),
                                                                       "alert": (c.get("alert") or {}).get("url")})
             continue
-        try: r, upd = sweep.sweep_company(c, rules, known, 10, dry)
+        try: r, upd = sweep.sweep_company(c, rules, known, 10, dry, boards)
         except Exception as e: r, upd = {"company": c["company"], "found": 0, "known": 0, "dropped": [], "added": [], "error": f"{type(e).__name__}: {e}"}, None
         rep["companies"].append(r)
         rep["added"] += r["added"]
         if not dry: radar.record_check(rad, c, r["found"], len(r["added"]), r["error"] or f"{r['found']} openings, {len(r['added'])} new (daily)", portal_update=upd)
-    if not dry: save(radar.RADAR, rad)
+    if not dry:
+        import board_watch
+        rep["gone"] = board_watch.update(boards)
+        save(radar.RADAR, rad)
 
 def gmail(rep, rules, dry):
     import gmail_imap, sweep
@@ -110,6 +113,8 @@ def show(rep, path=None):
     for i in rep["added"]:
         j = rows.get(i)
         if j: print(f"  {i}  {j['company']} · {j['title']}  {j['location'] or '-'}  (via {j['source']['via']})")
+    rp = [x for r in rep["companies"] for x in r.get("reposts", [])]
+    if rp: print("Reposts (shown once): " + "; ".join(f"{x['title']} = repost of {x['repost_of']}" for x in rp))
     print(f"Gmail: {rep.get('gmail', 'off')}")
     for k, v in (rep.get("apis") or {}).items():
         print(f"{k}: " + (v["skipped"] if v["skipped"] and not v["calls"] else f"{v['calls']} call(s), {v['postings']} posting(s)"))

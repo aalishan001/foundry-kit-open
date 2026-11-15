@@ -24,6 +24,7 @@ checks refuse anything that doesn't trace back.
 | `/check` | deep fit check: level, pay rule, place, company stability, match, odds, gaps |
 | `/tailor` | a resume (PDF, Word or both) and application notes for one job, every line traced to a fact |
 | `/applied`, `/update` | log applications and what happened next |
+| `/refer` | referrals: contacts per company, the ask message to send (you send it), one nudge, where each stands |
 | `/grill` | a timed mock interview, scored, no do-overs |
 | `/prep` | prep for a job's gaps: a primer, likely questions with honest answers, a quiz, checked free resources |
 | `/today`, `/help` | what needs you today; the cheat sheet |
@@ -103,11 +104,11 @@ Measured on real runs, zero-data-retention endpoints only (Claude Haiku 5.5 for 
 | | About |
 |---|---|
 | `/start` (once) | $0.19 with a short resume; more with a long master resume |
-| `/today`, `/radar`, `/update`, `/check`, `/grill` | $0.01–$0.03 each |
+| `/today`, `/radar`, `/update`, `/check`, `/grill`, `/refer` | $0.01–$0.03 each |
 | `/sweep`, `/applied` | $0.03–$0.05 |
 | `/prep` | $0.34 |
 | `/tailor` (one pass) | $0.41 |
-| A typical week | about $1.04, so $10 lasts about 9 weeks |
+| A typical week | about $1.08, so $10 lasts about 9 weeks |
 
 ## Privacy
 

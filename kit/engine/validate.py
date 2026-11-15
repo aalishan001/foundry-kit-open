@@ -13,10 +13,10 @@ FACT_STATUS = {"draft", "confirmed", "retired"}
 SOURCE = re.compile(r"^(user(:.+)?|engine(:.+)?|doc:.+|web:https://\S+)$")
 APP_STATUSES = ["applied", "oa", "screen", "interviewing", "offer", "accepted", "declined", "rejected", "withdrawn", "ghosted"]
 APP_CLOSED = {"accepted", "declined", "rejected", "withdrawn", "ghosted"}
-JOB_STATUSES = ["new", "shortlisted", "dismissed", "applied", "closed"]
+JOB_STATUSES = ["new", "shortlisted", "dismissed", "applied", "closed", "repost", "parked"]
 CHANNELS = ["careers_site", "referral", "recruiter", "email", "job_board", "other"]
 TIERS = {1, 2, 3}
-PORTALS = {"greenhouse", "lever", "smartrecruiters", "ashby", "workday", "static", "successfactors", "taleo", "oracle",
+PORTALS = {"greenhouse", "lever", "smartrecruiters", "ashby", "workday", "oraclehcm", "amazon", "eightfold", "static", "successfactors", "taleo", "oracle",
            "darwinbox", "zoho", "icims", "other", "unknown"}
 FORMATS = {"pdf", "docx"}
 EMAIL = re.compile(r"^[^@\s]+@[^@\s]+\.[a-z]{2,}$", re.I)
@@ -59,6 +59,10 @@ def search_errors(d):
     e, w = [], "search.json"
     r = d.get("rules") or {}
     if r.get("never_lower_level") is not True: e.append(f"{w}: rules.never_lower_level is always true")
+    if r.get("company_app_cap") is not None and not (isinstance(r["company_app_cap"], int) and r["company_app_cap"] >= 1): e.append(f"{w}: rules.company_app_cap must be a whole number of 1 or more, or null")
+    if r.get("max_steps_up") is not None and not (isinstance(r["max_steps_up"], int) and r["max_steps_up"] >= 0): e.append(f"{w}: rules.max_steps_up must be a whole number or null")
+    hco = (d.get("locations") or {}).get("home_cities_only")
+    if hco is not None and not (isinstance(hco, list) and all(isinstance(x, str) for x in hco)): e.append(f"{w}: locations.home_cities_only must be a list of cities")
     pct = r.get("lateral_min_raise_pct")
     if not (isinstance(pct, (int, float)) and not isinstance(pct, bool) and 0 <= pct <= 200): e.append(f"{w}: rules.lateral_min_raise_pct must be a number 0-200")
     if r.get("raise_basis", "ctc") not in ("ctc", "fixed"): e.append(f"{w}: rules.raise_basis must be ctc or fixed")
@@ -134,6 +138,7 @@ def _history(w, rows, statuses):
 
 def jobs_errors(d):
     e, seen = [], set()
+    ids_all = {j.get("id") for j in d.get("jobs", [])}
     for j in d.get("jobs", []):
         w = f"jobs.json {j.get('id')}"
         if not re.fullmatch(r"j-\d{4}", str(j.get("id", ""))): e.append(f"{w}: id must be j-NNNN")
@@ -147,6 +152,7 @@ def jobs_errors(d):
         e += _history(w, j.get("history"), JOB_STATUSES)
         if (j.get("history") or [{}])[-1].get("status") != j.get("status"): e.append(f"{w}: status must match the last history entry")
         if j.get("jd") and not (DATA.parent / j["jd"]).is_file(): e.append(f"{w}: JD copy {j['jd']} is missing")
+        if j.get("status") == "repost" and j.get("repost_of") not in ids_all: e.append(f"{w}: a repost needs repost_of, an existing job id")
     return e
 
 def apps_errors(d, jobs, resumes):
@@ -159,7 +165,7 @@ def apps_errors(d, jobs, resumes):
         if not DATE.match(str(a.get("applied", ""))): e.append(f"{w}: applied must be YYYY-MM-DD")
         if a.get("channel") not in CHANNELS: e.append(f"{w}: channel must be one of {CHANNELS}")
         if a.get("referrer") and a.get("channel") != "referral": e.append(f"{w}: a referrer goes with channel referral")
-        if a.get("resume") not in resumes: e.append(f"{w}: resume is not in resumes/index.json")
+        if a.get("resume") not in resumes and not (a.get("backfill") and a.get("resume") is None): e.append(f"{w}: resume is not in resumes/index.json")
         if a.get("job") and a["job"] not in jobs: e.append(f"{w}: job {a['job']} is not in jobs.json")
         if a.get("status") not in APP_STATUSES: e.append(f"{w}: status {a.get('status')!r} is not valid")
         if (a.get("status") == "interviewing") != bool(a.get("round")): e.append(f"{w}: round goes with interviewing, and interviewing needs one")
@@ -222,6 +228,8 @@ def all_errors():
     e += re_
     e += apps_errors(load(DATA / "apps.json", {"apps": []}), {j["id"] for j in jobs.get("jobs", [])}, resumes)
     e += radar_errors(load(DATA / "radar.json", {"companies": []}))
+    import refer
+    e += refer.errors(load(DATA / "contacts.json", {"contacts": []}) or {"contacts": []}, {j["id"] for j in jobs.get("jobs", [])})
     return e
 
 def main(a):

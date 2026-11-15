@@ -22,3 +22,6 @@ model: sonnet
    which resume. Say that the job moved to applied.
 
 5. Run `python engine/backup.py commit "applied: <a-id>"`.
+
+An application sent before they started using the kit: `python engine/jobs.py applied @data/tmp/a.json --backfill`
+(no JD copy or resume needed; it's marked as backfilled).
